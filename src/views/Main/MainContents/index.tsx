@@ -1,3 +1,4 @@
+
 import {useState} from 'react'
 
 import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material'
@@ -37,6 +38,3 @@ export default function MainContents({item}: Props) {
                     ))}
             </Grid>
         </Box>
-    </Box>
-  )
-}
