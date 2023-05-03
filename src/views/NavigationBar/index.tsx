@@ -8,9 +8,9 @@ export default function NavigationBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-        <AppBar variant='outlined' position="static" sx={{ p: '10px 80px', backgroundColor: '#ffffff' }} >
+        <AppBar variant='outlined' position="static" sx={{ p: '20px 80px', backgroundColor: '#ffffff' }} >
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <HomeIcon sx={{ color: '#FF9000'}}/>
+                <HomeIcon sx={{fontSize:'30px', color: '#FF9000'}}/>
                 <Typography variant="h6" sx={{ color: '#000000' }}>
                     Logo / 매장명
                 </Typography>
