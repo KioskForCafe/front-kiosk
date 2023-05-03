@@ -10,11 +10,11 @@ export default function NavigationBar() {
     <Box sx={{ flexGrow: 1 }}>
         <AppBar variant='outlined' position="static" sx={{ p: '20px 80px', backgroundColor: '#ffffff' }} >
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <HomeIcon sx={{fontSize:'30px', color: '#FF9000'}}/>
+                <HomeIcon sx={{fontSize:'30px', color: '#FF8C00'}}/>
                 <Typography variant="h6" sx={{ color: '#000000' }}>
                     Logo / 매장명
                 </Typography>
-                <Button variant='contained' sx={{ backgroundColor: '#FF9000' }}>
+                <Button variant='contained' sx={{ backgroundColor: '#FF8C00' }}>
                     로그인
                 </Button>
             </Box>

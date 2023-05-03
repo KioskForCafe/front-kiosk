@@ -38,3 +38,6 @@ export default function MainContents({item}: Props) {
                     ))}
             </Grid>
         </Box>
+    </Box>
+  )
+                    }
