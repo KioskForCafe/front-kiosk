@@ -9,7 +9,7 @@ function App() {
     <div>
       <NavigationBar />
       <MainHead />
-      <MainContents item={undefined} />
+      <MainContents />
       <MainOrder />
     </div>
   );

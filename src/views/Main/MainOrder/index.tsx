@@ -3,6 +3,8 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import ClearIcon from '@mui/icons-material/Clear';
+
 import React from 'react'
 
 export default function MainOrder() {
@@ -19,7 +21,7 @@ export default function MainOrder() {
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#E6E6FA', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height:'20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>2</Typography>
@@ -27,7 +29,10 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>7,000</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>7,000</Box>
+                        <Button>
+                            <ClearIcon sx={{ }}/>
+                        </Button>
                     </Box>
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
@@ -40,7 +45,7 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>10,500</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '50px'}}>10,500</Box>
                     </Box>
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#E6E6FA', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
@@ -53,7 +58,7 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>7,000</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '50px'}}>7,000</Box>
                     </Box>
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
@@ -66,7 +71,7 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>10,500</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '50px'}}>10,500</Box>
                     </Box>
                 </Box>
                 <Box sx={{display:'flex', alignItems:'center', flexDirection:'column' , width:'30px', backgroundColor: '#FFFFFF'}}>
