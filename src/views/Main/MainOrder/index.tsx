@@ -30,8 +30,8 @@ export default function MainOrder() {
                             </Button>
                         </Box>
                         <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>7,000</Box>
-                        <Button>
-                            <ClearIcon sx={{ }}/>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
                         </Button>
                     </Box>
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
@@ -45,7 +45,10 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '50px'}}>10,500</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>10,500</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#E6E6FA', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
@@ -58,7 +61,10 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '50px'}}>7,000</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>7,000</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
                     <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
@@ -71,7 +77,10 @@ export default function MainOrder() {
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '50px'}}>10,500</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>10,500</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
                 </Box>
                 <Box sx={{display:'flex', alignItems:'center', flexDirection:'column' , width:'30px', backgroundColor: '#FFFFFF'}}>

@@ -54,7 +54,7 @@ export default function MainContents() {
       ]);
 
   return (
-    <Box sx={{ p: '40px 120px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+    <Box sx={{ p: '40px 17vw', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
       <Box mt='2px'>
         <Grid container spacing={4}>
           {menuList.map((menuItem, index) => (
