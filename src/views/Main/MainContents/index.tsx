@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Popover, Typography } from '@mui/material';
 
 interface IMenuOption {
@@ -117,6 +118,61 @@ export default function MainContents() {
                     image={menu.imageUrl}
                     alt={menu.name}
                   />
+                  <Popover
+                    id="mouse-over-popover"
+                    sx={{
+                      pointerEvents: 'none',
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                  >
+                    <Box sx={{ width: '240px', height: '400px' }}>
+                      <Card sx={{ p: '10px 10px' }}>
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="100"
+                            image={menuItem.imageUrl}
+                            alt={menuItem.name}
+                          />
+                          <Typography variant="body2" color="text.secondary">
+                            {menuItem.description}
+                          </Typography>
+                        </CardActionArea>
+                      </Card>
+                      <Box sx={{ mt: '10px' }}>
+                        <Typography display='flex'>Size</Typography>
+                        <Box sx={{ textAlign: 'center' }}>
+                          <Box component='button' sx={{ width: '80px', height: '80px', ml: '10px' }}>
+                            <Typography>Reqular</Typography>
+                          </Box>
+                          <Box component='button' sx={{ width: '80px', height: '80px', ml: '10px' }}>
+                            <Typography>Large</Typography>
+                          </Box>
+                        </Box>
+                        <Typography display='flex'>추가</Typography>
+                        <Box sx={{ textAlign: 'center' }}>
+                          <Box component='button' sx={{ width: '80px', height: '80px', ml: '10px' }}>
+                            <Typography>1샷추가</Typography>
+                          </Box>
+                          <Box component='button' sx={{ width: '80px', height: '80px', ml: '10px' }}>
+                            <Typography>2샷추가</Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+
+                    </Box>
+                  </Popover>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       {menu.name}
