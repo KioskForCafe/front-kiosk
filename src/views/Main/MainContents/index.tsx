@@ -97,31 +97,42 @@ export default function MainContents() {
         >
           {selectedMenu && (
             <>
-              <Typography variant="h5">{selectedMenu.name}</Typography>
-              <Typography variant="h6">{selectedMenu.price}원</Typography>
-              <Divider />
+              <Card>
+                <CardMedia component='img' image={selectedMenu.imageUrl}></CardMedia> 
+              </Card>
+              <Typography variant="h5" sx={{m:'10px 10px'}}>{selectedMenu.name}</Typography>
+              <Typography variant="h6" sx={{ml:'10px'}}>{selectedMenu.price}원</Typography>
+              <Divider sx={{mt: '10px'}} />
               <List>
                 {selectedMenu.options.map((option) => (
                   <ListItem key={option.id}>
                     <Box>
                       <Typography display='block' sx={{ mb: '10px' }}>SIZE</Typography>
-                      <Box component='button' sx={{ width: '100px', height: '100px' }}>
+                      <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                         <ListItemText primary={option.name1} />
                         <Typography>{option.price}원</Typography>
                       </Box>
-                      <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px' }} >
+                      <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
                         <ListItemText primary={option.name2} />
                         <Typography>{option.price}원</Typography>
                       </Box>
                       <Box sx={{ mt: '20px' }}>
                         <Typography display='block' sx={{ mb: '10px' }}>추가</Typography>
-                        <Box component='button' sx={{ width: '100px', height: '100px' }}>
+                        <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                           <ListItemText primary={option.name3} />
                           <Typography>{option.price}원</Typography>
                         </Box>
-                        <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px' }} >
+                        <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
                           <ListItemText primary={option.name4} />
                           <Typography>{option.price}원</Typography>
+                        </Box>
+                      </Box>
+                      <Box sx={{ mt: '50px' }}>
+                        <Box component='button' sx={{ width: '150px' }}>
+                          <Typography>주문담기</Typography>
+                        </Box>
+                        <Box component='button' sx={{ ml: '12px' }}>
+                          <Typography>취소</Typography>
                         </Box>
                       </Box>
                     </Box>
