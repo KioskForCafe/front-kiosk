@@ -1,86 +1,122 @@
 import { useState } from 'react';
-import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Popover, Typography } from '@mui/material';
 
+import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Popover, Typography } from '@mui/material';
+
+interface IMenuOption {
+  id: number;
+  name: string;
+  price: number;
+}
 
 interface IMenuItem {
+  id: number;
   name: string;
-  description: string;
+  price: number;
   imageUrl: string;
+  options: IMenuOption[];
 }
 
 export default function MainContents() {
 
   const [menuList, setMenuList] = useState<IMenuItem[]>([
     {
+      id: 1,
       name: 'Menu 1',
-      description: 'Description for Menu 1',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 1, name: "샷 추가", price: 300 }],
     },
     {
+      id: 2,
       name: 'Menu 2',
-      description: 'Description for Menu 2',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 2, name: "샷 추가", price: 300 }],
     },
     {
+      id: 3,
       name: 'Menu 3',
-      description: 'Description for Menu 3',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 3, name: "샷 추가", price: 300 }],
     },
     {
+      id: 4,
       name: 'Menu 4',
-      description: 'Description for Menu 4',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 4, name: "샷 추가", price: 300 }],
     },
     {
+      id: 5,
       name: 'Menu 5',
-      description: 'Description for Menu 5',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 5, name: "샷 추가", price: 300 }],
     },
     {
+      id: 6,
       name: 'Menu 6',
-      description: 'Description for Menu 6',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 6, name: "샷 추가", price: 300 }],
     },
     {
+      id: 7,
       name: 'Menu 7',
-      description: 'Description for Menu 7',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 7, name: "샷 추가", price: 300 }],
     },
     {
+      id: 8,
       name: 'Menu 8',
-      description: 'Description for Menu 8',
+      price: 1000,
       imageUrl: 'https://via.placeholder.com/150',
+      options: [{ id: 8, name: "샷 추가", price: 300 }],
     },
   ]);
 
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-    // navigator('');
+  const handleMenuClick = (menu: IMenuItem) => {
+    setSelectedMenu(menu);
   };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
       <Box mt='2px'>
+        <Drawer
+          anchor="right"
+          open={Boolean(selectedMenu)}
+          onClose={() => setSelectedMenu(null)}
+        >
+          {selectedMenu && (
+            <>
+              <Typography variant="h5">{selectedMenu.name}</Typography>
+              <Typography variant="h6">{selectedMenu.price}원</Typography>
+              <Divider />
+              <List>
+                {selectedMenu.options.map((option) => (
+                  <ListItem key={option.id}>
+                    <ListItemText primary={option.name} />
+                    <Typography>{option.price}원</Typography>
+                  </ListItem>
+                ))}
+              </List>
+            </>
+          )}
+        </Drawer>
         <Grid container spacing={4}>
-          {menuList.map((menuItem, index) => (
-            <Grid item key={index} xs={12} sm={6} md={3}>
-              <Card sx={{ height: '100%' }}>
+          {menuList.map((menu) => (
+            <Grid item key={menu.id} xs={12} sm={6} md={3}>
+              <Card sx={{ height: '100%' }} onClick={() => handleMenuClick(menu)}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
                     height="140"
-                    image={menuItem.imageUrl}
-                    alt={menuItem.name}
-                    onClick={handlePopoverOpen}
-                  // onMouseLeave={handlePopoverClose}
+                    image={menu.imageUrl}
+                    alt={menu.name}
                   />
                   <Popover
                     id="mouse-over-popover"
@@ -139,10 +175,10 @@ export default function MainContents() {
                   </Popover>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {menuItem.name}
+                      {menu.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {menuItem.description}
+                      {menu.price}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
