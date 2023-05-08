@@ -113,6 +113,7 @@ export default function MainContents() {
                         <Typography>{option.price}원</Typography>
                       </Box>
                       <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
+
                         <ListItemText primary={option.name2} />
                         <Typography>{option.price}원</Typography>
                       </Box>
@@ -123,6 +124,7 @@ export default function MainContents() {
                           <Typography>{option.price}원</Typography>
                         </Box>
                         <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
+
                           <ListItemText primary={option.name4} />
                           <Typography>{option.price}원</Typography>
                         </Box>
