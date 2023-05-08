@@ -98,7 +98,7 @@ export default function MainContents() {
               <List>
                 {selectedMenu.options.map((option) => (
                   <ListItem key={option.id}>
-                    <ListItemText primary={option.name} />
+                      <ListItemText primary={option.name} />              
                     <Typography>{option.price}원</Typography>
                   </ListItem>
                 ))}
