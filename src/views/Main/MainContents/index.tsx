@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Popover, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Pagination, Popover, Typography } from '@mui/material';
 import { relative } from 'path';
 
 interface IMenuOption {
@@ -18,6 +18,7 @@ interface IMenuItem {
   price: number;
   imageUrl: string;
   options: IMenuOption[];
+  
 }
 
 export default function MainContents() {
@@ -83,6 +84,8 @@ export default function MainContents() {
 
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
+  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
+
   const handleMenuClick = (menu: IMenuItem) => {
     setSelectedMenu(menu);
   };
@@ -104,7 +107,7 @@ export default function MainContents() {
               <Typography variant="h6" sx={{ml:'10px'}}>{selectedMenu.price}원</Typography>
               <Divider sx={{mt: '10px'}} />
               <List>
-                {selectedMenu.options.map((option) => (
+                {selectedMenu.optionDetail.map((option) => (
                   <ListItem key={option.id}>
                     <Box>
                       <Typography display='block' sx={{ mb: '10px' }}>SIZE</Typography>
@@ -156,10 +159,10 @@ export default function MainContents() {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {menu.name}
+                      {menu.menuName}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {menu.price}
+                      {menu.menuPrice}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -167,6 +170,9 @@ export default function MainContents() {
             </Grid>
           ))}
         </Grid>
+        <Box sx={{ mt: '40px', display: 'flex', justifyContent: 'center' }}>
+          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event, value) => onPageHandler(value)}/>
+        </Box>
       </Box>
     </Box>
   )

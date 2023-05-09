@@ -1,10 +1,20 @@
 import User from './User.interface';
+export interface IMenuOption {
+    id: number;
+    name1: string;
+    name2: string;
+    name3: string;
+    name4: string;
+    price: number;
+}
 export interface IMenuItem {
     menuId: number;
-    menuImgUrl: string | null;
+    menuImgUrl: string;
     menuName: string;
-    menuPrice: number;
+    menuPrice: number;  
 }
+
+optionDetail: IMenuOption[];
 export interface IUser {
     userId: string;
     userName: string;
@@ -14,4 +24,12 @@ export interface IUser {
     isAdmin: boolean;
     telNumber: string;
 }
+
+
 export type { User };
+
+
+
+
+
+

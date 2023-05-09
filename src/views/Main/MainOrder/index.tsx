@@ -18,14 +18,14 @@ export default function MainOrder() {
                     (<Typography sx={{ fontSize: '15px', fontWeight: 300 }}>메뉴를 추가해 주세요.</Typography>)
                 :(<Box></Box>)} */}
                 <Box sx={{display:'flex', flex:1, flexDirection: 'column'}}>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0FFF0', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0F8FF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>2</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
@@ -34,14 +34,14 @@ export default function MainOrder() {
                             <ClearIcon />
                         </Button>
                     </Box>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0FFFF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>3</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
@@ -50,14 +50,14 @@ export default function MainOrder() {
                             <ClearIcon />
                         </Button>
                     </Box>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0FFF0', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0F8FF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height:'20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height:'20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>2</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
@@ -66,14 +66,14 @@ export default function MainOrder() {
                             <ClearIcon />
                         </Button>
                     </Box>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0FFFF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>3</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#3CB371' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
@@ -93,10 +93,10 @@ export default function MainOrder() {
                 </Box>
             </Card>
             <Box sx={{ height: '360px', ml: '30px'}}>
-                <Typography variant='h6' sx={{ fontSize: '25px', color: '#3CB371' }}>총 결제</Typography>
-                <Typography variant='h6' sx={{ fontSize: '25px', color: '#3CB371' }}>$ 00,000원</Typography>               
+                <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
+                <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>$ 00,000원</Typography>               
                 <Box sx={{ m: '40px 0px'}}>
-                    <Button variant='contained' sx={{ mt: '30px', width: '150px', height: '90px', backgroundColor: '#3CB371' }}>
+                    <Button variant='contained' sx={{ mt: '30px', width: '150px', height: '90px', backgroundColor: '#008B8B' }}>
                         <Typography sx={{ fontSize: '20px', fontWeight: 300 }}>결제</Typography>
                     </Button>
                 </Box>
