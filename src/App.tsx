@@ -5,6 +5,7 @@ import MainContents from './views/Main/MainContents';
 import MainOrder from './views/Main/MainOrder';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Main from './views/Main';
+import AuthenticationView from './views/AuthenticationView';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path='/' element={(<Main />)} />
+        <Route path='/auth' element={(<AuthenticationView />)} />
       </Routes>
     </>
   );

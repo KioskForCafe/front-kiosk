@@ -3,6 +3,8 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import ClearIcon from '@mui/icons-material/Clear';
+
 import React from 'react'
 
 export default function MainOrder() {
@@ -16,57 +18,69 @@ export default function MainOrder() {
                     (<Typography sx={{ fontSize: '15px', fontWeight: 300 }}>메뉴를 추가해 주세요.</Typography>)
                 :(<Box></Box>)} */}
                 <Box sx={{display:'flex', flex:1, flexDirection: 'column'}}>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#E6E6FA', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0F8FF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height:'20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>2</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>7,000</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>7,000</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0FFFF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>3</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>10,500</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>10,500</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#E6E6FA', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0F8FF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>에스프레소</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height:'20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height:'20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>2</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>7,000</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>7,000</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
-                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#FFFFF0', alignItems:'center'}}>
+                    <Box sx={{display:'flex', flex:1, height: '36px', backgroundColor: '#F0FFFF', alignItems:'center'}}>
                         <Box sx={{flex:1, ml: '10px'}}>카페라떼</Box>
                         <Box sx={{display:'flex', mr: '10px', alignItems:'center'}}>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <RemoveRoundedIcon />
                             </Button>
                             <Typography sx={{ ml: '10px', mr: '10px' }}>3</Typography>
-                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#7B68EE' }}>
+                            <Button sx={{ minWidth: '20px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
                                 <AddRoundedIcon />
                             </Button>
                         </Box>
-                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '90px'}}>10,500</Box>
+                        <Box sx={{ml: '20px', mr: '20px', pr: '20px', width: '10px'}}>10,500</Box>
+                        <Button sx={{ fontSize: "small" }}>
+                            <ClearIcon />
+                        </Button>
                     </Box>
                 </Box>
                 <Box sx={{display:'flex', alignItems:'center', flexDirection:'column' , width:'30px', backgroundColor: '#FFFFFF'}}>
@@ -79,10 +93,10 @@ export default function MainOrder() {
                 </Box>
             </Card>
             <Box sx={{ height: '360px', ml: '30px'}}>
-                <Typography variant='h6' sx={{ fontSize: '25px', color: '#00008B' }}>총 결제</Typography>
-                <Typography variant='h6' sx={{ fontSize: '25px', color: '#00008B' }}>$ 00,000원</Typography>               
+                <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
+                <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>$ 00,000원</Typography>               
                 <Box sx={{ m: '40px 0px'}}>
-                    <Button variant='contained' sx={{ mt: '30px', width: '150px', height: '90px', backgroundColor: '#00008B' }}>
+                    <Button variant='contained' sx={{ mt: '30px', width: '150px', height: '90px', backgroundColor: '#008B8B' }}>
                         <Typography sx={{ fontSize: '20px', fontWeight: 300 }}>결제</Typography>
                     </Button>
                 </Box>
