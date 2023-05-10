@@ -6,7 +6,6 @@ export interface IMenuOption {
     name4: string;
     price: number;
 }
-
 export interface IMenuItem {
     menuId: number;
     menuImgUrl: string;
