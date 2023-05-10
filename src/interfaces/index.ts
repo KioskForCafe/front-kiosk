@@ -12,9 +12,10 @@ export interface IMenuItem {
     menuImgUrl: string;
     menuName: string;
     menuPrice: number;  
+    optionDetail: IMenuOption[];
 }
 
-optionDetail: IMenuOption[];
+
 export interface IUser {
     userId: string;
     userName: string;
