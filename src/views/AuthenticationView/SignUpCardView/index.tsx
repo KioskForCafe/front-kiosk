@@ -85,8 +85,9 @@ export default function SignUpCardView({ setLoginView }: Props) {
     const data: DuplicateUserNameDto = { userName };
     
     axios.post(DUPLICATE_USERNAME_URL, data)
-      .then((response) => duplicateUserNameResponseHandler(response))
-      .catch((error) => duplicateUserNameErrorHandler(error));
+    // todo : 해야할것
+      .then((response) => duplicateUserNameResponseHandler())
+      .catch((error) => duplicateUserNameErrorHandler());
   }
 
   const onTelNumberHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -101,8 +102,9 @@ export default function SignUpCardView({ setLoginView }: Props) {
     const data: DuplicateTelNumberDto = { telNumber };
     
     axios.post(DUPLICATE_TEL_NUMBER_URL, data)
-      .then((response) => duplicateTelNumberResponseHandler(response))
-      .catch((error) => duplicateTelNumberErrorHandler(error));
+    // todo : 해야할것
+      .then((response) => duplicateTelNumberResponseHandler())
+      .catch((error) => duplicateTelNumberErrorHandler());
   }
 
 
