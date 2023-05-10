@@ -3,84 +3,9 @@ import { useState } from 'react';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Pagination, Popover, Typography } from '@mui/material';
 import { relative } from 'path';
 
-interface IMenuOption {
-  id: number;
-  name1: string;
-  name2: string;
-  name3: string;
-  name4: string;
-  price: number;
-}
-
-interface IMenuItem {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-  options: IMenuOption[];
-  
-}
 
 export default function MainContents() {
 
-  const [menuList, setMenuList] = useState<IMenuItem[]>([
-    {
-      id: 1,
-      name: 'Menu 1',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000002407]_20210225095106743.jpg',
-      options: [{ id: 1, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 2,
-      name: 'Menu 2',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002487]_20210426091745467.jpg',
-      options: [{ id: 2, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 3,
-      name: 'Menu 3',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000479]_20210426091843897.jpg',
-      options: [{ id: 3, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 4,
-      name: 'Menu 4',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002081]_20210415133656839.jpg',
-      options: [{ id: 4, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 5,
-      name: 'Menu 5',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000002093]_20210225094415504.jpg',
-      options: [{ id: 5, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 6,
-      name: 'Menu 6',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2022/03/[9200000002672]_20220311105511600.jpg',
-      options: [{ id: 6, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 7,
-      name: 'Menu 7',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2023/03/[9200000004559]_20230320090452696.jpg',
-      options: [{ id: 7, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-    {
-      id: 8,
-      name: 'Menu 8',
-      price: 1000,
-      imageUrl: 'https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000038]_20210430113202458.jpg',
-      options: [{ id: 8, name1: "Regular", name2: "Large", name3: "샷추가1", name4: "샷추가2", price: 300 }],
-    },
-  ]);
 
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 

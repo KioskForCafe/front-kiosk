@@ -77,7 +77,6 @@ export default function LoginCardView({ setLoginView }: Props) {
             로그인
           </Button>
         </Box>
-
       </Box>
     </Box>
   )
