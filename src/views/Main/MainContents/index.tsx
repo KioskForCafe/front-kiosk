@@ -1,15 +1,11 @@
 import { useState } from 'react';
 
-import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
-import Pagination from '@mui/material/Pagination';
+import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Pagination, Popover, Typography } from '@mui/material';
+import { relative } from 'path';
 
-import { IMenuItem } from 'src/interfaces';
-import { usePagingHook } from 'src/hooks';
-import { getPageCount } from 'src/utils';
 
 export default function MainContents() {
 
-  
 
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
@@ -30,10 +26,10 @@ export default function MainContents() {
           {selectedMenu && (
             <>
               <Card>
-                <CardMedia component='img' image={selectedMenu.menuImgUrl}></CardMedia> 
+                <CardMedia component='img' image={selectedMenu.imageUrl}></CardMedia> 
               </Card>
-              <Typography variant="h5" sx={{m:'10px 10px'}}>{selectedMenu.menuName}</Typography>
-              <Typography variant="h6" sx={{ml:'10px'}}>{selectedMenu.menuPrice}원</Typography>
+              <Typography variant="h5" sx={{m:'10px 10px'}}>{selectedMenu.name}</Typography>
+              <Typography variant="h6" sx={{ml:'10px'}}>{selectedMenu.price}원</Typography>
               <Divider sx={{mt: '10px'}} />
               <List>
                 {selectedMenu.optionDetail.map((option) => (
@@ -75,15 +71,15 @@ export default function MainContents() {
           )}
         </Drawer>
         <Grid container spacing={4}>
-          {viewList.map((menu) => (
-            <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
+          {menuList.map((menu) => (
+            <Grid item key={menu.id} xs={12} sm={6} md={3} lg={2} xl={2}>
               <Card sx={{ height: '100%' }} onClick={() => handleMenuClick(menu)}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
                     height="150"
-                    image={menu.menuImgUrl}
-                    alt={menu.menuName}
+                    image={menu.imageUrl}
+                    alt={menu.name}
                     sx={{ objectFit: "cover", width: "100%" }}
                   />
                   <CardContent>
