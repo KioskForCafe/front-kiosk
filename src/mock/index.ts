@@ -1,4 +1,4 @@
-import { IMenuItem } from "src/interfaces";
+import { ICategory, IMenuItem } from "src/interfaces";
 
 export const MENU: IMenuItem[] = [
     {
@@ -7,15 +7,19 @@ export const MENU: IMenuItem[] = [
         menuName: '아메리카노',
         menuPrice: 2000,
         optionDetail: [
-            { 
-                id: 1, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 1,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 2,
@@ -23,15 +27,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카페라떼',
         menuPrice: 2500,
         optionDetail: [
-            { 
-                id: 2, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 2,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 3,
@@ -39,15 +47,19 @@ export const MENU: IMenuItem[] = [
         menuName: '캬라멜마끼야또',
         menuPrice: 3000,
         optionDetail: [
-            { 
-                id: 3, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 3,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 4,
@@ -55,15 +67,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카푸치노',
         menuPrice: 3500,
         optionDetail: [
-            { 
-                id: 4, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 4,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 5,
@@ -71,15 +87,19 @@ export const MENU: IMenuItem[] = [
         menuName: '아메리카노',
         menuPrice: 2000,
         optionDetail: [
-            { 
-                id: 5, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 5,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 6,
@@ -87,15 +107,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카페라떼',
         menuPrice: 2500,
         optionDetail: [
-            { 
-                id: 6, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 6,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 7,
@@ -103,15 +127,19 @@ export const MENU: IMenuItem[] = [
         menuName: '캬라멜마끼야또',
         menuPrice: 3000,
         optionDetail: [
-            { 
-                id: 7, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 7,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 8,
@@ -119,15 +147,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카푸치노',
         menuPrice: 3500,
         optionDetail: [
-            { 
-                id: 8, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 8,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 9,
@@ -135,15 +167,19 @@ export const MENU: IMenuItem[] = [
         menuName: '아메리카노',
         menuPrice: 2000,
         optionDetail: [
-            { 
-                id: 9, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 9,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 10,
@@ -151,15 +187,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카페라떼',
         menuPrice: 2500,
         optionDetail: [
-            { 
-                id: 10, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 10,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 11,
@@ -167,15 +207,19 @@ export const MENU: IMenuItem[] = [
         menuName: '캬라멜마끼야또',
         menuPrice: 3000,
         optionDetail: [
-            { 
-                id: 11, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 11,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 12,
@@ -183,15 +227,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카푸치노',
         menuPrice: 3500,
         optionDetail: [
-            { 
-                id: 12, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 12,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 13,
@@ -199,15 +247,19 @@ export const MENU: IMenuItem[] = [
         menuName: '아메리카노',
         menuPrice: 2000,
         optionDetail: [
-            { 
-                id: 13, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 13,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 14,
@@ -215,15 +267,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카페라떼',
         menuPrice: 2500,
         optionDetail: [
-            { 
-                id: 14, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 14,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 15,
@@ -231,15 +287,19 @@ export const MENU: IMenuItem[] = [
         menuName: '캬라멜마끼야또',
         menuPrice: 3000,
         optionDetail: [
-            { 
-                id: 15, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 15,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 16,
@@ -247,15 +307,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카푸치노',
         menuPrice: 3500,
         optionDetail: [
-            { 
-                id: 16, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 16,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 17,
@@ -263,15 +327,19 @@ export const MENU: IMenuItem[] = [
         menuName: '아메리카노',
         menuPrice: 2000,
         optionDetail: [
-            { 
-                id: 17, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 17,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 18,
@@ -279,15 +347,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카페라떼',
         menuPrice: 2500,
         optionDetail: [
-            { 
-                id: 18, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 18,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 19,
@@ -295,15 +367,19 @@ export const MENU: IMenuItem[] = [
         menuName: '캬라멜마끼야또',
         menuPrice: 3000,
         optionDetail: [
-            { 
-                id: 19, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 19,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 20,
@@ -311,15 +387,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카푸치노',
         menuPrice: 3500,
         optionDetail: [
-            { 
-                id: 20, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 20,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 1
+            },
     },
     {
         menuId: 21,
@@ -327,15 +407,19 @@ export const MENU: IMenuItem[] = [
         menuName: '아메리카노',
         menuPrice: 2000,
         optionDetail: [
-            { 
-                id: 21, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 21,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 2
+            },
     },
     {
         menuId: 22,
@@ -343,15 +427,19 @@ export const MENU: IMenuItem[] = [
         menuName: '카페라떼',
         menuPrice: 2500,
         optionDetail: [
-            { 
-                id: 22, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 22,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 2
+            },
     },
     {
         menuId: 23,
@@ -359,15 +447,19 @@ export const MENU: IMenuItem[] = [
         menuName: '캬라멜마끼야또',
         menuPrice: 3000,
         optionDetail: [
-            { 
-                id: 23, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 23,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 2
+            },
     },
     {
         menuId: 24,
@@ -375,14 +467,33 @@ export const MENU: IMenuItem[] = [
         menuName: '카푸치노',
         menuPrice: 3500,
         optionDetail: [
-            { 
-                id: 24, 
-                name1: "Regular", 
-                name2: "Large", 
-                name3: "샷추가1", 
-                name4: "샷추가2", 
-                price: 300 
+            {
+                id: 24,
+                name1: "Regular",
+                name2: "Large",
+                name3: "샷추가1",
+                name4: "샷추가2",
+                price: 300
             }
-            ],
+        ],
+        categoryId:
+            {
+                categoryId: 2
+            },
+    },
+]
+
+export const CATEGORY: ICategory[] = [
+    {
+        categoryId: 1
+    },
+    {
+        categoryId: 2
+    },
+    {
+        categoryId: 3
+    },
+    {
+        categoryId: 4
     },
 ]

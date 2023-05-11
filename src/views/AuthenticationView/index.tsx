@@ -9,7 +9,7 @@ export default function AuthenticationView() {
 
   return (
     <Box sx={{pr: "120px", pl: "120px"}}>
-      <Card sx={{width: '500px', height: '400px', mt: '100px', mb: '80px', p: '50px 50px'}}>
+      <Card sx={{width: '700px', height: '900px', mt: '100px', mb: '80px', p: '50px 50px'}}>
         {loginView ? (<LoginCardView setLoginView={setLoginView}/>): (<SignUpCardView setLoginView={setLoginView}/>)}
       </Card>
     </Box>
