@@ -9,8 +9,6 @@ import { getPageCount } from 'src/utils';
 
 export default function MainContents() {
 
-  
-
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
   const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);

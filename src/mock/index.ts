@@ -16,11 +16,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 2,
@@ -37,11 +36,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 3,
@@ -58,11 +56,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 4,
@@ -79,11 +76,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 5,
@@ -100,11 +96,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 6,
@@ -121,11 +116,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 7,
@@ -142,11 +136,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 8,
@@ -163,11 +156,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 9,
@@ -184,11 +176,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 10,
@@ -205,11 +196,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 11,
@@ -226,11 +216,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 12,
@@ -247,11 +236,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 13,
@@ -268,11 +256,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 14,
@@ -289,11 +276,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 15,
@@ -310,11 +296,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 16,
@@ -331,11 +316,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 17,
@@ -352,11 +336,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 18,
@@ -373,11 +356,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 19,
@@ -394,11 +376,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 20,
@@ -415,11 +396,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 1
-            }
-        ],
+            },
     },
     {
         menuId: 21,
@@ -436,11 +416,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 2
-            }
-        ],
+            },
     },
     {
         menuId: 22,
@@ -457,11 +436,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 2
-            }
-        ],
+            },
     },
     {
         menuId: 23,
@@ -478,11 +456,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 2
-            }
-        ],
+            },
     },
     {
         menuId: 24,
@@ -499,11 +476,10 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId: [
+        categoryId:
             {
                 categoryId: 2
-            }
-        ],
+            },
     },
 ]
 
