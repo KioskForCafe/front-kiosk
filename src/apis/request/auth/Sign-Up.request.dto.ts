@@ -4,7 +4,7 @@ interface RequestDto {
   userName: string;
   userEmail: string;
   telNumber: string;
-  isAdmin: boolean;
+  // isAdmin: boolean;
 }
 
 export default RequestDto;

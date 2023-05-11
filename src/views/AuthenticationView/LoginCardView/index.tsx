@@ -18,6 +18,8 @@ import { SignInRequestDto } from "src/apis/request/auth";
 import { SignInResponseDto } from "src/apis/response/auth";
 import ResponseDto from "src/apis/response";
 import { SIGN_IN_URL } from "src/apis/constants/api";
+import { useStore } from "zustand";
+import { useUserStore } from "src/stores";
 
 interface Props {
   setLoginView: Dispatch<SetStateAction<boolean>>;
@@ -28,7 +30,7 @@ export default function LoginCardView({ setLoginView }: Props) {
   //          Hook          //
   const navigator = useNavigate();
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
+  const {setUser} =useUserStore();
   const [loginError, setLoginError] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -68,6 +70,7 @@ export default function LoginCardView({ setLoginView }: Props) {
 
       const { token, expiredTime, ...user } = data;
       setUserId(userId);
+      setUser(user);
       navigator("/");
     };
 
@@ -77,7 +80,7 @@ export default function LoginCardView({ setLoginView }: Props) {
   };
 
   return (
-    <Box display='flex' sx={{ height: '100%', flexDirection: "column", justifyContent: "space-between" }}>
+    <Box display='flex' sx={{ height: "500px", flexDirection: "column", justifyContent: "space-between" }}>
       <Box>
         <Typography variant="h5" fontWeight='700' sx={{color: '#008B8B'}}>Service Center KIOSK</Typography>
         <FormControl error={loginError} fullWidth variant="standard" sx={{ mt: "60px" }}>
