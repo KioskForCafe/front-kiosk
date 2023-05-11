@@ -29,7 +29,7 @@ export default function NavigationBar() {
                         </Button> */}
                         {path.pathname !== '/auth' && (user ?
                             (
-                                <Button variant='outlined' sx={{ borderColor: '#008B8B', color: '#3CB371' }} onClick={() => navigator('/myPage')}>
+                                <Button variant='outlined' sx={{ borderColor: '#008B8B', color: '#008B8B' }} onClick={() => navigator('/myPage')}>
                                     마이페이지
                                 </Button>
                             ) : (

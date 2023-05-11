@@ -31,8 +31,8 @@ interface ISignUpStore {
     passwordDuplicate: boolean | null;
     setPasswordDuplicate: (passwordDuplicate: boolean) => void;
     
-    userNameDuplicate: boolean | null;
-    setUserNameDuplicate: (userNameDuplicate: boolean) => void;
+    userNamePatternCheck: boolean;
+    setUserNamePatternCheck: (userNamePatternCheck: boolean) => void;
 
     telNumberPatternCheck: boolean | null;
     setTelNumberPatternCheck: (telNumberPatternCheck: boolean) => void;
@@ -80,8 +80,8 @@ const useStore = create<ISignUpStore>((set) => ({
     passwordDuplicate: null,
     setPasswordDuplicate: (passwordDuplicate: boolean) => set((state) => ({...state, passwordDuplicate})),
 
-    userNameDuplicate: null,
-    setUserNameDuplicate: (userNameDuplicate: boolean) => set((state) => ({...state, userNameDuplicate})),
+    userNamePatternCheck: false,
+    setUserNamePatternCheck: (userNamePatternCheck: boolean) => set((state) => ({...state, userNamePatternCheck})),
 
     telNumberPatternCheck: null,
     setTelNumberPatternCheck: (telNumberPatternCheck: boolean) => set((state) => ({...state, telNumberPatternCheck})),
