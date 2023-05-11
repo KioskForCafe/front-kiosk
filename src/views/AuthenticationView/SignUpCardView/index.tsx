@@ -41,7 +41,6 @@ function FirstPage() {
   const { telNumberPatternCheck, telNumberDuplicate, userEmailPatternCheck, userEmailDuplicate } = useSignUpStore();
   const { setTelNumberPatternCheck, setTelNumberDuplicate, setUserEmailPatternCheck, setUserEmailDuplicate } = useSignUpStore();
 
-
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordCheck, setShowPasswordCheck] = useState<boolean>(false);
 
