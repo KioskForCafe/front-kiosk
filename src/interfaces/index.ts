@@ -13,11 +13,12 @@ export interface IMenuItem {
     menuName: string;
     menuPrice: number;  
     optionDetail: IMenuOption[];
-    categoryId: ICategory;
+    categoryId: number;
 }
 
 export interface ICategory {
     categoryId: number;
+    categoryName: string;
 }
 
 

@@ -16,10 +16,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 2,
@@ -36,10 +33,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 3,
@@ -56,10 +50,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 4,
@@ -76,10 +67,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 5,
@@ -96,10 +84,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 6,
@@ -116,10 +101,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 7,
@@ -136,10 +118,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 8,
@@ -156,10 +135,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 9,
@@ -176,10 +152,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 10,
@@ -196,10 +169,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 11,
@@ -216,10 +186,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 12,
@@ -236,10 +203,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 13,
@@ -256,10 +220,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 1
     },
     {
         menuId: 14,
@@ -276,10 +237,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 2
     },
     {
         menuId: 15,
@@ -296,10 +254,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 2
     },
     {
         menuId: 16,
@@ -316,10 +271,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 2
     },
     {
         menuId: 17,
@@ -336,10 +288,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 2
     },
     {
         menuId: 18,
@@ -356,10 +305,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 2
     },
     {
         menuId: 19,
@@ -376,10 +322,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 3
     },
     {
         menuId: 20,
@@ -396,10 +339,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 1
-            },
+        categoryId: 3
     },
     {
         menuId: 21,
@@ -416,10 +356,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 2
-            },
+        categoryId: 3
     },
     {
         menuId: 22,
@@ -436,10 +373,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 2
-            },
+        categoryId: 4
     },
     {
         menuId: 23,
@@ -456,10 +390,7 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 2
-            },
+        categoryId: 4
     },
     {
         menuId: 24,
@@ -476,24 +407,25 @@ export const MENU: IMenuItem[] = [
                 price: 300
             }
         ],
-        categoryId:
-            {
-                categoryId: 2
-            },
+        categoryId: 4
     },
 ]
 
 export const CATEGORY: ICategory[] = [
     {
-        categoryId: 1
+        categoryId: 1,
+        categoryName: "커피"
     },
     {
-        categoryId: 2
+        categoryId: 2,
+        categoryName: "디저트"
     },
     {
-        categoryId: 3
+        categoryId: 3,
+        categoryName: "케이크"
     },
     {
-        categoryId: 4
+        categoryId: 4,
+        categoryName: "스무디"
     },
 ]
