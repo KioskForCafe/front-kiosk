@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 
-import { IMenuItem } from 'src/interfaces';
+import { ICategory, IMenuItem } from 'src/interfaces';
 import { usePagingHook } from 'src/hooks';
 import { getPageCount } from 'src/utils';
+import { CATEGORY } from 'src/mock';
 
 export default function MainContents() {
 
+  const [categoryList, setCategoryList] = useState<ICategory[]>(CATEGORY);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
   const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
@@ -16,6 +19,15 @@ export default function MainContents() {
   const handleMenuClick = (menu: IMenuItem) => {
     setSelectedMenu(menu);
   };
+
+  const handleCategoryClick = (categoryId: number) => {
+    setSelectedCategory(categoryId);
+  }
+
+  const filteredMenus =
+    selectedCategory === null
+      ? viewList
+      : viewList.filter((menu) => menu.categoryId === selectedCategory);
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
@@ -72,8 +84,21 @@ export default function MainContents() {
             </>
           )}
         </Drawer>
+        <Box sx={{ m: '20px 20px', p: '40px 120px', display: 'flex', justifyContent: 'space-between' }}>
+          <List>
+          {categoryList.map((category) => (
+            <ListItem
+              key={category.categoryId}
+              button
+              onClick={() => handleCategoryClick(category.categoryId)}
+            >
+              <ListItemText primary={category.categoryName} />
+            </ListItem>
+          ))}
+        </List>
+        </Box>
         <Grid container spacing={4}>
-          {viewList.map((menu) => (
+          {filteredMenus.map((menu) => (
             <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
               <Card sx={{ height: '100%' }} onClick={() => handleMenuClick(menu)}>
                 <CardActionArea>

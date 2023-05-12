@@ -7,7 +7,7 @@ import MainOrder from './MainOrder'
 export default function Main() {
   return (
     <Box>
-        <MainHead />
+        {/* <MainHead /> */}
         <MainContents />
         <MainOrder />
     </Box>
