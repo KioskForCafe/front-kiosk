@@ -5,7 +5,7 @@ import { MENU } from "src/mock";
 const usePagingHook = (COUNT: number) => {
 
     const [productList, setProductList] = useState<IMenuItem[]>(MENU);
-    const [viewList, setViewList] = useState<IMenuItem[]>(MENU);
+    const [viewList, setViewList] = useState<IMenuItem[]>([]);
     const [pageNumber, setPageNumber] = useState<number>(1);
 
     const onPageHandler = (page: number) => {
@@ -26,6 +26,11 @@ const usePagingHook = (COUNT: number) => {
         useEffect(() => {
             onPageHandler(pageNumber);
           }, [productList]);
+
+        useEffect(() => {
+            setProductList(MENU);
+            onPageHandler(pageNumber);
+        }, []);
 
         return {productList, viewList, pageNumber, setProductList, onPageHandler, COUNT};
     }
