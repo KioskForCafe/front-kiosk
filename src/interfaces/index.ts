@@ -13,7 +13,7 @@ export interface IMenuItem {
     menuName: string;
     menuPrice: number;  
     optionDetail: IMenuOption[];
-    categoryId: ICategory[];
+    categoryId: ICategory;
 }
 
 export interface ICategory {

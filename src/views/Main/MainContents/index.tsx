@@ -38,30 +38,30 @@ export default function MainContents() {
                   <ListItem key={option.id}>
                     <Box>
                       <Typography display='block' sx={{ mb: '10px' }}>SIZE</Typography>
-                      <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                      <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                         <ListItemText primary={option.name1} />
                         <Typography>{option.price}원</Typography>
                       </Box>
-                      <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
+                      <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
                         <ListItemText primary={option.name2} />
                         <Typography>{option.price}원</Typography>
                       </Box>
                       <Box sx={{ mt: '20px' }}>
                         <Typography display='block' sx={{ mb: '10px' }}>추가</Typography>
-                        <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                        <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                           <ListItemText primary={option.name3} />
                           <Typography>{option.price}원</Typography>
                         </Box>
-                        <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#2E8B57', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
+                        <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
                           <ListItemText primary={option.name4} />
                           <Typography>{option.price}원</Typography>
                         </Box>
                       </Box>
-                      <Box sx={{ mt: '50px' }}>
-                        <Box component='button' sx={{ width: '150px' }}>
+                      <Box sx={{ mt: '50px',  }}>
+                        <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                           <Typography>주문담기</Typography>
                         </Box>
-                        <Box component='button' sx={{ ml: '12px' }}>
+                        <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                           <Typography>취소</Typography>
                         </Box>
                       </Box>
