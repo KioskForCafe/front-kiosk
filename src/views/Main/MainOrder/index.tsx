@@ -1,16 +1,51 @@
-import { Box, Button, Card, Fab, IconButton, Typography } from '@mui/material';
+import { Box, Button, Card, Typography } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import AddIcon from '@mui/icons-material/Add';
 
-import React from 'react'
+
+
+
 
 export default function MainOrder() {
 
     // const flag = false;
+
+    const incrementButton = document.getElementById("incrementButton");
+    const decrementButton = document.getElementById("decrementButton");
+    const numberDisplay = document.getElementById("itemNumber");
+
+    let currentNumber: number = 0; 
+
+    const storedNumber = localStorage.getItem("currentNumber");
+
+    if (storedNumber !== null) {
+        currentNumber = parseInt(storedNumber);
+    }
+
+    if (incrementButton && decrementButton && numberDisplay) {
+        numberDisplay.textContent = currentNumber.toString(); 
+
+        incrementButton.addEventListener("click", () => {
+            currentNumber++; 
+            window.localStorage.setItem("currentNumber", currentNumber.toString()); 
+            numberDisplay.textContent = currentNumber.toString(); 
+        });
+
+        decrementButton.addEventListener("click", () => {
+            if (currentNumber > 0) {
+                currentNumber--; 
+                window.localStorage.setItem("currentNumber", currentNumber.toString()); 
+                numberDisplay.textContent = currentNumber.toString(); 
+            }
+        });
+    } else {
+        console.log("Element not found.");
+    }
+
+
     return (
         <Box sx={{ p: '20px 80px', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
             <Box sx={{ display: 'flex' }}>
@@ -22,13 +57,15 @@ export default function MainOrder() {
                         <Box sx={{ display: 'flex', flex: 1, height: '36px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
                             <Box sx={{ flex: 1, ml: '10px' }}>에스프레소</Box>
                             <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <RemoveRoundedIcon />
-                                </Button>
-                                <Typography sx={{ ml: '10px', mr: '10px' }}>1</Typography>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <AddRoundedIcon />
-                                </Button>
+                                <button id="decrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
+                                </button>
+                                <Box sx={{ ml: '10px', mr: '10px' }}>
+                                    <div id="itemNumber">0</div>
+                                </Box>
+                                <button id="incrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <AddRoundedIcon sx={{ fontSize: 'Large' }} />
+                                </button>
                             </Box>
                             <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>7,000</Box>
                             <Button sx={{ fontSize: "small" }}>
@@ -36,17 +73,19 @@ export default function MainOrder() {
                             </Button>
                         </Box>
                         <Box sx={{ display: 'flex', flex: 1, height: '36px', backgroundColor: '#F0FFFF', alignItems: 'center' }}>
-                            <Box sx={{ flex: 1, ml: '10px' }}>카페라떼</Box>
+                            <Box sx={{ flex: 1, ml: '10px' }}>에스프레소</Box>
                             <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <RemoveRoundedIcon />
-                                </Button>
-                                <Typography sx={{ ml: '10px', mr: '10px' }}>1</Typography>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <AddRoundedIcon />
-                                </Button>
+                                <button id="decrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
+                                </button>
+                                <Box sx={{ ml: '10px', mr: '10px' }}>
+                                    <div id="itemNumber">0</div>
+                                </Box>
+                                <button id="incrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <AddRoundedIcon sx={{ fontSize: 'Large' }} />
+                                </button>
                             </Box>
-                            <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>10,500</Box>
+                            <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>7,000</Box>
                             <Button sx={{ fontSize: "small" }}>
                                 <ClearIcon />
                             </Button>
@@ -54,13 +93,15 @@ export default function MainOrder() {
                         <Box sx={{ display: 'flex', flex: 1, height: '36px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
                             <Box sx={{ flex: 1, ml: '10px' }}>에스프레소</Box>
                             <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <RemoveRoundedIcon />
-                                </Button>
-                                <Typography sx={{ ml: '10px', mr: '10px' }}>1</Typography>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <AddRoundedIcon />
-                                </Button>
+                                <button id="decrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
+                                </button>
+                                <Box sx={{ ml: '10px', mr: '10px' }}>
+                                    <div id="itemNumber">0</div>
+                                </Box>
+                                <button id="incrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <AddRoundedIcon sx={{ fontSize: 'Large' }} />
+                                </button>
                             </Box>
                             <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>7,000</Box>
                             <Button sx={{ fontSize: "small" }}>
@@ -68,17 +109,19 @@ export default function MainOrder() {
                             </Button>
                         </Box>
                         <Box sx={{ display: 'flex', flex: 1, height: '36px', backgroundColor: '#F0FFFF', alignItems: 'center' }}>
-                            <Box sx={{ flex: 1, ml: '10px' }}>카페라떼</Box>
+                            <Box sx={{ flex: 1, ml: '10px' }}>에스프레소</Box>
                             <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <RemoveRoundedIcon />
-                                </Button>
-                                <Typography sx={{ ml: '10px', mr: '10px' }}>1</Typography>
-                                <Button variant='contained' sx={{ minWidth: '30px', height: '20px', color: '#FFFFFF', backgroundColor: '#008B8B' }}>
-                                    <AddRoundedIcon />
-                                </Button>
+                                <button id="decrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
+                                </button>
+                                <Box sx={{ ml: '10px', mr: '10px' }}>
+                                    <div id="itemNumber">0</div>
+                                </Box>
+                                <button id="incrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
+                                    <AddRoundedIcon sx={{ fontSize: 'Large' }} />
+                                </button>
                             </Box>
-                            <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>10,500</Box>
+                            <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>7,000</Box>
                             <Button sx={{ fontSize: "small" }}>
                                 <ClearIcon />
                             </Button>
