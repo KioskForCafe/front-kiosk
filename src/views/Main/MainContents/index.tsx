@@ -11,11 +11,10 @@ import { CATEGORY } from 'src/mock';
 export default function MainContents() {
 
   const [categoryList, setCategoryList] = useState<ICategory[]>(CATEGORY);
-
   const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
-  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
+  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12, selectedCategory);
 
   const handleMenuClick = (menu: IMenuItem) => {
     setSelectedMenu(menu);
@@ -24,8 +23,6 @@ export default function MainContents() {
   const handleCategoryClick = (category: ICategory) => {
     setSelectedCategory(category);
   };
-
-  const filteredMenus = viewList.filter((menu) => !selectedCategory || menu.categoryId === selectedCategory.categoryId);
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
