@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
-import { IMenuItem } from "src/interfaces";
+import { ICategory, IMenuItem } from "src/interfaces";
 import { MENU } from "src/mock";
 
-const usePagingHook = (COUNT: number) => {
+const usePagingHook = (COUNT: number, selectedCategory: ICategory | null) => {
 
-    const [productList, setProductList] = useState<IMenuItem[]>(MENU);
+    let products = MENU;
+    
+    if(selectedCategory !== null){
+        products = MENU.filter((menu)=>menu.categoryId === selectedCategory.categoryId)
+    }
+
+    const [productList, setProductList] = useState<IMenuItem[]>(products);
     const [viewList, setViewList] = useState<IMenuItem[]>([]);
     const [pageNumber, setPageNumber] = useState<number>(1);
 
@@ -25,7 +31,12 @@ const usePagingHook = (COUNT: number) => {
 
         useEffect(() => {
             onPageHandler(pageNumber);
-          }, [productList]);
+          }, [ productList]);
+
+        useEffect(()=>{
+            setProductList(products)
+            onPageHandler(1)
+        },[selectedCategory])
 
         useEffect(() => {
             setProductList(MENU);
