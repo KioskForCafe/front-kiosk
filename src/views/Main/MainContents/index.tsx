@@ -96,7 +96,7 @@ export default function MainContents() {
           ))}
         </List>
         <Grid container spacing={4}>
-          {filteredMenus.map((menu) => (
+          {viewList.map((menu) => (
             <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
               <Card sx={{ height: '100%' }} onClick={() => handleMenuClick(menu)}>
                 <CardActionArea>
