@@ -7,8 +7,11 @@ import { ICategory, IMenuItem } from 'src/interfaces';
 import { usePagingHook } from 'src/hooks';
 import { getPageCount } from 'src/utils';
 import { CATEGORY } from 'src/mock';
+import { useNavigate } from 'react-router-dom';
 
 export default function MainContents() {
+
+  const navigator = useNavigate();
 
   const [categoryList, setCategoryList] = useState<ICategory[]>(CATEGORY);
   const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
@@ -35,11 +38,11 @@ export default function MainContents() {
           {selectedMenu && (
             <>
               <Card>
-                <CardMedia component='img' image={selectedMenu.menuImgUrl}></CardMedia> 
+                <CardMedia component='img' image={selectedMenu.menuImgUrl}></CardMedia>
               </Card>
-              <Typography variant="h5" sx={{m:'10px 10px'}}>{selectedMenu.menuName}</Typography>
-              <Typography variant="h6" sx={{ml:'10px'}}>{selectedMenu.menuPrice}원</Typography>
-              <Divider sx={{mt: '10px'}} />
+              <Typography variant="h5" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
+              <Typography variant="h6" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
+              <Divider sx={{ mt: '10px' }} />
               <List>
                 {selectedMenu.optionDetail.map((option) => (
                   <ListItem key={option.id}>
@@ -64,11 +67,11 @@ export default function MainContents() {
                           <Typography>{option.price}원</Typography>
                         </Box>
                       </Box>
-                      <Box sx={{ mt: '50px',  }}>
+                      <Box sx={{ mt: '50px', }}>
                         <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                           <Typography>주문담기</Typography>
                         </Box>
-                        <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                        <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => setSelectedMenu(null)}>
                           <Typography>취소</Typography>
                         </Box>
                       </Box>
@@ -79,20 +82,19 @@ export default function MainContents() {
             </>
           )}
         </Drawer>
-        <Box sx={{ m: '20px 20px', p: '40px 120px', display: 'flex', justifyContent: 'space-between' }}>
-          <List>
+        <List sx={{ m: '20px', p: '40px', display: 'flex', justifyContent: 'space-between' }}>
           {categoryList.map((category) => (
             <ListItem
               key={category.categoryId}
               button
-              selected = {selectedCategory?.categoryId === category.categoryId}
+              selected={selectedCategory?.categoryId === category.categoryId}
               onClick={() => handleCategoryClick(category)}
+              sx={{ flexGrow: 1, textAlign: 'center', mr: 2, backgroundColor: '#008B8B' }}
             >
               <ListItemText primary={category.categoryName} />
             </ListItem>
           ))}
         </List>
-        </Box>
         <Grid container spacing={4}>
           {filteredMenus.map((menu) => (
             <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
@@ -119,7 +121,7 @@ export default function MainContents() {
           ))}
         </Grid>
         <Box sx={{ mt: '40px', display: 'flex', justifyContent: 'center' }}>
-          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event,value) => onPageHandler(value)}/>
+          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event, value) => onPageHandler(value)} />
         </Box>
       </Box>
     </Box>
