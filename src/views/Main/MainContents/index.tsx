@@ -40,11 +40,11 @@ export default function MainContents() {
           {selectedMenu && (
             <>
               <Card>
-                <CardMedia component='img' image={selectedMenu.menuImgUrl}></CardMedia> 
+                <CardMedia component='img' image={selectedMenu.menuImgUrl}></CardMedia>
               </Card>
-              <Typography variant="h5" sx={{m:'10px 10px'}}>{selectedMenu.menuName}</Typography>
-              <Typography variant="h6" sx={{ml:'10px'}}>{selectedMenu.menuPrice}원</Typography>
-              <Divider sx={{mt: '10px'}} />
+              <Typography variant="h5" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
+              <Typography variant="h6" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
+              <Divider sx={{ mt: '10px' }} />
               <List>
                 {selectedMenu.optionDetail.map((option) => (
                   <ListItem key={option.id}>
@@ -69,8 +69,8 @@ export default function MainContents() {
                           <Typography>{option.price}원</Typography>
                         </Box>
                       </Box>
-                      <Box sx={{ mt: '50px',  }}>
-                        <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                      <Box sx={{ mt: '50px', }}>
+                        <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => ({})}>
                           <Typography>주문담기</Typography>
                         </Box>
                         <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
@@ -86,16 +86,16 @@ export default function MainContents() {
         </Drawer>
         <Box sx={{ m: '20px 20px', p: '40px 120px', display: 'flex', justifyContent: 'space-between' }}>
           <List>
-          {categoryList.map((category) => (
-            <ListItem
-              key={category.categoryId}
-              button
-              onClick={() => handleCategoryClick(category.categoryId)}
-            >
-              <ListItemText primary={category.categoryName} />
-            </ListItem>
-          ))}
-        </List>
+            {categoryList.map((category) => (
+              <ListItem
+                key={category.categoryId}
+                button
+                onClick={() => handleCategoryClick(category.categoryId)}
+              >
+                <ListItemText primary={category.categoryName} />
+              </ListItem>
+            ))}
+          </List>
         </Box>
         <Grid container spacing={4}>
           {filteredMenus.map((menu) => (
@@ -123,7 +123,7 @@ export default function MainContents() {
           ))}
         </Grid>
         <Box sx={{ mt: '40px', display: 'flex', justifyContent: 'center' }}>
-          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event, value) => onPageHandler(value)}/>
+          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event, value) => onPageHandler(value)} />
         </Box>
       </Box>
     </Box>
