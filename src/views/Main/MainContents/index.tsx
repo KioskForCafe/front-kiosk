@@ -11,7 +11,7 @@ import { CATEGORY } from 'src/mock';
 export default function MainContents() {
 
   const [categoryList, setCategoryList] = useState<ICategory[]>(CATEGORY);
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
   const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
@@ -20,14 +20,11 @@ export default function MainContents() {
     setSelectedMenu(menu);
   };
 
-  const handleCategoryClick = (categoryId: number) => {
-    setSelectedCategory(categoryId);
-  }
+  const handleCategoryClick = (category: ICategory) => {
+    setSelectedCategory(category);
+  };
 
-  const filteredMenus =
-    selectedCategory === null
-      ? viewList
-      : viewList.filter((menu) => menu.categoryId === selectedCategory);
+  const filteredMenus = viewList.filter((menu) => !selectedCategory || menu.categoryId === selectedCategory.categoryId);
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
@@ -90,7 +87,8 @@ export default function MainContents() {
             <ListItem
               key={category.categoryId}
               button
-              onClick={() => handleCategoryClick(category.categoryId)}
+              selected = {selectedCategory?.categoryId === category.categoryId}
+              onClick={() => handleCategoryClick(category)}
             >
               <ListItemText primary={category.categoryName} />
             </ListItem>
@@ -123,7 +121,7 @@ export default function MainContents() {
           ))}
         </Grid>
         <Box sx={{ mt: '40px', display: 'flex', justifyContent: 'center' }}>
-          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event, value) => onPageHandler(value)}/>
+          <Pagination color="primary" page={pageNumber} count={getPageCount(productList, COUNT)} onChange={(event,value) => onPageHandler(value)}/>
         </Box>
       </Box>
     </Box>

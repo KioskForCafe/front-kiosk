@@ -27,11 +27,6 @@ const usePagingHook = (COUNT: number) => {
             onPageHandler(pageNumber);
           }, [productList]);
 
-        useEffect(() => {
-            setProductList(MENU);
-            onPageHandler(pageNumber);
-        }, []);
-
         return {productList, viewList, pageNumber, setProductList, onPageHandler, COUNT};
     }
 
