@@ -14,7 +14,7 @@ export default function MainContents() {
   const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
-  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
+  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12, selectedCategory);
 
   const handleMenuClick = (menu: IMenuItem) => {
     setSelectedMenu(menu);
@@ -23,8 +23,6 @@ export default function MainContents() {
   const handleCategoryClick = (category: ICategory) => {
     setSelectedCategory(category);
   };
-
-  const filteredMenus = viewList.filter((menu) => !selectedCategory || menu.categoryId === selectedCategory.categoryId);
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
@@ -96,7 +94,7 @@ export default function MainContents() {
         </List>
         </Box>
         <Grid container spacing={4}>
-          {filteredMenus.map((menu) => (
+          {viewList.map((menu) => (
             <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
               <Card sx={{ height: '100%' }} onClick={() => handleMenuClick(menu)}>
                 <CardActionArea>
