@@ -11,6 +11,7 @@ import { CATEGORY } from 'src/mock';
 export default function MainContents() {
 
   const [categoryList, setCategoryList] = useState<ICategory[]>(CATEGORY);
+
   const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
