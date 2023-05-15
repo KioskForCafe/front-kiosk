@@ -73,7 +73,7 @@ export default function MainContents() {
                         <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => ({})}>
                           <Typography>주문담기</Typography>
                         </Box>
-                        <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                        <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
                           <Typography>취소</Typography>
                         </Box>
                       </Box>
