@@ -1,4 +1,4 @@
-import { ICategory, IMenuItem } from "src/interfaces";
+import { ICategory, IMenuItem, IOrderLog } from "src/interfaces";
 
 export const MENU: IMenuItem[] = [
     {
@@ -428,4 +428,56 @@ export const CATEGORY: ICategory[] = [
         categoryId: 4,
         categoryName: "스무디"
     },
+]
+
+export const ORDERLOG: IOrderLog[] = [
+    {
+        orderId: 1,
+        createdAt: '2023-05-17'
+    },
+    {
+        orderId: 2,
+        createdAt: '2023-05-17'
+    },
+    {
+        orderId: 3,
+        createdAt: '2023-05-18'
+    },
+    {
+        orderId: 4,
+        createdAt: '2023-05-19'
+    },
+    {
+        orderId: 5,
+        createdAt: '2023-05-20'
+    },
+    {
+        orderId: 6,
+        createdAt: '2023-05-21'
+    },
+    {
+        orderId: 7,
+        createdAt: '2023-05-23'
+    },
+    {
+        orderId: 8,
+        createdAt: '2023-05-23'
+    },
+    {
+        orderId: 9,
+        createdAt: '2023-05-25'
+    },
+    {
+        orderId: 10,
+        createdAt: '2023-05-25'
+    },
+    {
+        orderId: 11,
+        createdAt: '2023-05-27'
+    },
+    {
+        orderId: 12,
+        createdAt: '2023-05-28'
+    },
+
 ]
