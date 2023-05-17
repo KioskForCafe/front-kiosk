@@ -21,6 +21,11 @@ export interface ICategory {
     categoryName: string;
 }
 
+export interface IOrderLog {
+    orderId: number;
+    createdAt: string;
+}
+
 
 export interface IUser {
     userId: string;

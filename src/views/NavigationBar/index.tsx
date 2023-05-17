@@ -24,6 +24,9 @@ export default function NavigationBar() {
                         <Typography variant="h6" sx={{ color: '#000000' }}>
                             Logo / 매장명
                         </Typography>
+                        <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/mypage')}>
+                                    마이페이지
+                        </Button>
                         {/* <Button variant='contained' sx={{ backgroundColor: '#008B8B' }}>
                             로그인
                         </Button> */}
