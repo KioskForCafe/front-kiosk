@@ -9,7 +9,7 @@ import { getPageCount } from 'src/utils';
 import { CATEGORY } from 'src/mock';
 import { useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
-import { GET_CATEGORY_LIST_URL, GET_MENU_LIST_URL } from 'src/apis/constants/api';
+import { GET_CATEGORY_LIST_URL, GET_MENU_DETAIL_URL, GET_MENU_LIST_URL } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { Category } from '@mui/icons-material';
@@ -20,19 +20,14 @@ export default function MainContents() {
   //          Hook          //
   const navigator = useNavigate();
 
-  const [categoryList, setCategoryList] = useState<ICategory[] | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
-  const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
+  const [categoryList, setCategoryList] = useState<GetCategoryResponseDto[]>([]);
+  const [menuList, setMenuList] = useState<GetMenuResponseDto[]>([]);
+  const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto[]>([]);
 
 
-  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12, selectedCategory);
+  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
 
   //          Event Handler          //
-
-  const handleMenuClick = (menu: IMenuItem) => {
-    setSelectedMenu(menu);
-  };
-
 
   const getCategoryHandler = () => {
     axios.get(GET_CATEGORY_LIST_URL('1'))
@@ -40,14 +35,20 @@ export default function MainContents() {
       .catch((error) => getCategoryErrorHandler(error));
   }
 
-  // const handleCategoryClick = (category: ICategory) => {
-  //   setSelectedCategory(category);
-  // };
-  const handleCategoryClick = (category: ICategory) => {
-    axios.get(GET_MENU_LIST_URL('1', category.categoryId+''))
-        .then((response) => getMenuReseponseHandler(response))
-        .catch((error) => getMenuErrorHandler(error));
+  const getMenuListHandler = (data: GetCategoryResponseDto) => {
+    console.log('handleCategoryClick');
+    axios.get(GET_MENU_LIST_URL('1', data.categoryId))
+      .then((response) => getMenuReseponseHandler(response))
+      .catch((error) => getMenuErrorHandler(error));
   };
+
+  const getMenuDetailHandler = (data: GetMenuResponseDto) => {
+    axios.get(GET_MENU_DETAIL_URL(data.menuId))
+      .then((response) => getMenuDetailResponseHandler(response))
+      .catch((error) => getMenuDetailErrorHandler(error));
+  };
+
+
 
   //          Response Handler          //
 
@@ -71,9 +72,16 @@ export default function MainContents() {
       navigator('/');
       return;
     }
-    // setSelectedCategory(data);
     console.log(data);
-    // console.log(selectedCategory);
+  }
+
+  const getMenuDetailResponseHandler = (response: AxiosResponse<any, any>) => {
+    const { result, message, data } = response.data as ResponseDto<GetMenuDetailResponseDto[]>
+    if (!result || !data) {
+      alert(message);
+      return;
+    }
+    setSelectedMenu(data);
   }
 
   //          Error Handler          //
@@ -86,21 +94,20 @@ export default function MainContents() {
     console.log(error.message);
   }
 
+  const getMenuDetailErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
   //          Use Effect          //
   useEffect(() => {
     getCategoryHandler();
   }, [])
 
-  // useEffect(() => {
-  //   handleCategoryClick();
-  // }, [])
-
-
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
       <Box mt='2px'>
-        <Drawer
+        {/* <Drawer
           anchor='right'
           open={Boolean(selectedMenu)}
           onClose={() => setSelectedMenu(null)}
@@ -114,7 +121,7 @@ export default function MainContents() {
               <Typography variant="h6" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
               <Divider sx={{ mt: '10px' }} />
               <List>
-                {selectedMenu.optionDetail.map((option) => (
+                {selectedMenu.optionList.map((option) => (
                   <ListItem key={option.id}>
                     <Box>
                       <Typography display='block' sx={{ mb: '10px' }}>SIZE</Typography>
@@ -151,14 +158,13 @@ export default function MainContents() {
               </List>
             </>
           )}
-        </Drawer>
+        </Drawer> */}
         <List sx={{ m: '20px', p: '40px', display: 'flex', justifyContent: 'space-between' }}>
           {categoryList?.map((category) => (
             <ListItem
               key={category.categoryId}
               button
-              selected={selectedCategory?.categoryId === category.categoryId}
-              onClick={() => handleCategoryClick(category)}
+              onClick={() => getMenuListHandler(category)}
               sx={{ flexGrow: 1, textAlign: 'center', mr: 2, backgroundColor: '#008B8B' }}
             >
               <ListItemText primary={category.categoryName} />
@@ -168,12 +174,12 @@ export default function MainContents() {
         <Grid container spacing={4}>
           {viewList.map((menu) => (
             <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
-              <Card sx={{ height: '100%' }} onClick={() => handleMenuClick(menu)}>
+              <Card sx={{ height: '100%' }} onClick={() => getMenuDetailHandler(menu)}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
                     height="150"
-                    image={menu.menuImgUrl}
+                    image={menu.menuImgUrl ? menu.menuImgUrl : ''}
                     alt={menu.menuName}
                     sx={{ objectFit: "cover", width: "100%" }}
                   />
@@ -197,3 +203,4 @@ export default function MainContents() {
     </Box>
   )
 }
+

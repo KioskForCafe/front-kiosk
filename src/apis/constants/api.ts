@@ -9,5 +9,5 @@ export const DUPLICATE_USEREMAIL_URL = `${HOST}api/user/checkEmail/duplicate`;
 
 export const GET_CATEGORY_LIST_URL = (storeId: string) => `${HOST}api/category/list/${storeId}`;
 
-export const GET_MENU_LIST_URL = (storeId: string, categoryId: string) => `${HOST}api/menu/list/${storeId}/${categoryId}`;
+export const GET_MENU_LIST_URL = (storeId: string, categoryId: number) => `${HOST}api/menu/list/${storeId}/${categoryId}`;
 export const GET_MENU_DETAIL_URL = (menuId: number) => `${HOST}api/menu/${menuId}`;
