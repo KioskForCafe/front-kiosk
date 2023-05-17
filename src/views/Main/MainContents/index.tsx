@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
@@ -8,24 +8,94 @@ import { usePagingHook } from 'src/hooks';
 import { getPageCount } from 'src/utils';
 import { CATEGORY } from 'src/mock';
 import { useNavigate } from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
+import { GET_CATEGORY_LIST_URL, GET_MENU_LIST_URL } from 'src/apis/constants/api';
+import ResponseDto from 'src/apis/response';
+import { GetCategoryResponseDto } from 'src/apis/response/category';
+import { Category } from '@mui/icons-material';
+import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 
 export default function MainContents() {
 
+  //          Hook          //
   const navigator = useNavigate();
 
-  const [categoryList, setCategoryList] = useState<ICategory[]>(CATEGORY);
+  const [categoryList, setCategoryList] = useState<ICategory[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
   const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null);
 
+
   const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12, selectedCategory);
+
+  //          Event Handler          //
 
   const handleMenuClick = (menu: IMenuItem) => {
     setSelectedMenu(menu);
   };
 
+
+  const getCategoryHandler = () => {
+    axios.get(GET_CATEGORY_LIST_URL('1'))
+      .then((response) => getCategoryResponseHandler(response))
+      .catch((error) => getCategoryErrorHandler(error));
+  }
+
+  // const handleCategoryClick = (category: ICategory) => {
+  //   setSelectedCategory(category);
+  // };
   const handleCategoryClick = (category: ICategory) => {
-    setSelectedCategory(category);
+    axios.get(GET_MENU_LIST_URL('1', category.categoryId+''))
+        .then((response) => getMenuReseponseHandler(response))
+        .catch((error) => getMenuErrorHandler(error));
   };
+
+  //          Response Handler          //
+
+  const getCategoryResponseHandler = (response: AxiosResponse<any, any>) => {
+    const { result, message, data } = response.data as ResponseDto<GetCategoryResponseDto[]>
+    if (!result || !data) {
+      alert(message);
+      navigator('/');
+      return;
+    }
+    setCategoryList(data);
+    console.log(data);
+    console.log(categoryList);
+
+  }
+
+  const getMenuReseponseHandler = (response: AxiosResponse<any, any>) => {
+    const { result, message, data } = response.data as ResponseDto<GetMenuResponseDto[]>
+    if (!result || !data) {
+      alert(message);
+      navigator('/');
+      return;
+    }
+    // setSelectedCategory(data);
+    console.log(data);
+    // console.log(selectedCategory);
+  }
+
+  //          Error Handler          //
+
+  const getCategoryErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
+  const getMenuErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
+  //          Use Effect          //
+  useEffect(() => {
+    getCategoryHandler();
+  }, [])
+
+  // useEffect(() => {
+  //   handleCategoryClick();
+  // }, [])
+
+
 
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
@@ -83,7 +153,7 @@ export default function MainContents() {
           )}
         </Drawer>
         <List sx={{ m: '20px', p: '40px', display: 'flex', justifyContent: 'space-between' }}>
-          {categoryList.map((category) => (
+          {categoryList?.map((category) => (
             <ListItem
               key={category.categoryId}
               button
