@@ -3,16 +3,14 @@ import { useEffect, useState } from 'react';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 
-import { ICategory, IMenuItem } from 'src/interfaces';
 import { usePagingHook } from 'src/hooks';
 import { getPageCount } from 'src/utils';
-import { CATEGORY } from 'src/mock';
 import { useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import { GET_CATEGORY_LIST_URL, GET_MENU_DETAIL_URL, GET_MENU_LIST_URL } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
-import { Category } from '@mui/icons-material';
+
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 
 export default function MainContents() {
@@ -22,7 +20,9 @@ export default function MainContents() {
 
   const [categoryList, setCategoryList] = useState<GetCategoryResponseDto[]>([]);
   const [menuList, setMenuList] = useState<GetMenuResponseDto[]>([]);
-  const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto[]>([]);
+
+  const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto | null>(null);
+
 
 
   const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
@@ -43,6 +43,8 @@ export default function MainContents() {
   };
 
   const getMenuDetailHandler = (data: GetMenuResponseDto) => {
+    
+    console.log('getMenuDetailHandler')
     axios.get(GET_MENU_DETAIL_URL(data.menuId))
       .then((response) => getMenuDetailResponseHandler(response))
       .catch((error) => getMenuDetailErrorHandler(error));
@@ -72,16 +74,24 @@ export default function MainContents() {
       navigator('/');
       return;
     }
+
+    setMenuList(data);
     console.log(data);
+    console.log(menuList);
   }
 
   const getMenuDetailResponseHandler = (response: AxiosResponse<any, any>) => {
-    const { result, message, data } = response.data as ResponseDto<GetMenuDetailResponseDto[]>
+    const { result, message, data } = response.data as ResponseDto<GetMenuDetailResponseDto>
+
     if (!result || !data) {
       alert(message);
       return;
     }
     setSelectedMenu(data);
+
+    console.log('selected menu');
+    console.log(data);
+
   }
 
   //          Error Handler          //
@@ -115,46 +125,35 @@ export default function MainContents() {
           {selectedMenu && (
             <>
               <Card>
-                <CardMedia component='img' image={selectedMenu.menuImgUrl}></CardMedia>
+                <CardMedia component='img' height="150"
+                  image={selectedMenu.menuImgUrl ? selectedMenu.menuImgUrl : ''}
+                  alt={selectedMenu.menuName}
+                  sx={{ objectFit: "cover", width: "100%" }}>
+                </CardMedia>
               </Card>
-              <Typography variant="h5" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
-              <Typography variant="h6" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
+              <Typography variant="h4" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
+              <Typography variant="h5" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
               <Divider sx={{ mt: '10px' }} />
               <List>
+                <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-                  <ListItem key={option.id}>
-                    <Box>
-                      <Typography display='block' sx={{ mb: '10px' }}>SIZE</Typography>
-                      <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
-                        <ListItemText primary={option.name1} />
-                        <Typography>{option.price}원</Typography>
-                      </Box>
-                      <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
-                        <ListItemText primary={option.name2} />
-                        <Typography>{option.price}원</Typography>
-                      </Box>
-                      <Box sx={{ mt: '20px' }}>
-                        <Typography display='block' sx={{ mb: '10px' }}>추가</Typography>
-                        <Box component='button' sx={{ width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
-                          <ListItemText primary={option.name3} />
-                          <Typography>{option.price}원</Typography>
-                        </Box>
-                        <Box component='button' sx={{ ml: '10px', width: '100px', height: '100px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }} >
-                          <ListItemText primary={option.name4} />
-                          <Typography>{option.price}원</Typography>
-                        </Box>
-                      </Box>
-                      <Box sx={{ mt: '50px', }}>
-                        <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
-                          <Typography>주문담기</Typography>
-                        </Box>
-                        <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => setSelectedMenu(null)}>
-                          <Typography>취소</Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </ListItem>
+                  // <ListItem key={option.optionId}>
+                  <Box component='button' sx={{ ml: '15px',  width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                    {/* <ListItemText primary={option.optionName} /> */}
+                    <Typography variant="h6">{option.optionName}</Typography>
+                    <Typography sx={{mt: '5px'}}>{option.optionPrice}원</Typography>
+                  </Box>
+                  // </ListItem>
+
                 ))}
+                <Box sx={{ m: '20px 15px' }}>
+                  <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                    <Typography>주문담기</Typography>
+                  </Box>
+                  <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => setSelectedMenu(null)}>
+                    <Typography>취소</Typography>
+                  </Box>
+                </Box>
               </List>
             </>
           )}
@@ -172,7 +171,7 @@ export default function MainContents() {
           ))}
         </List>
         <Grid container spacing={4}>
-          {viewList.map((menu) => (
+          {menuList.map((menu) => (
             <Grid item key={menu.menuId} xs={12} sm={6} md={3} lg={2} xl={2}>
               <Card sx={{ height: '100%' }} onClick={() => getMenuDetailHandler(menu)}>
                 <CardActionArea>
