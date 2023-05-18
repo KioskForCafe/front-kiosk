@@ -8,5 +8,5 @@ export type {
   GetMenuDetailResponseDto,
   GetMenuResponseDto,
   PatchMenuResponseDto,
-  PostMenuResponseDto,
+  PostMenuResponseDto
 };
