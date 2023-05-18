@@ -11,3 +11,5 @@ export const GET_CATEGORY_LIST_URL = (storeId: string) => `${HOST}api/category/l
 
 export const GET_MENU_LIST_URL = (storeId: string, categoryId: number) => `${HOST}api/menu/list/${storeId}/${categoryId}`;
 export const GET_MENU_DETAIL_URL = (menuId: number) => `${HOST}api/menu/${menuId}`;
+
+export const GET_ORDER_LIST_URL = (storeId: number) => `${HOST}api/store/list/${storeId}`;
