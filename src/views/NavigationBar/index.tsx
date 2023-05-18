@@ -24,15 +24,12 @@ export default function NavigationBar() {
                         <Typography variant="h6" sx={{ color: '#000000' }}>
                             Logo / 매장명
                         </Typography>
-                        <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/mypage')}>
-                                    마이페이지
-                        </Button>
                         {/* <Button variant='contained' sx={{ backgroundColor: '#008B8B' }}>
                             로그인
                         </Button> */}
                         {path.pathname !== '/auth' && (user ?
                             (
-                                <Button variant='outlined' sx={{ borderColor: '#008B8B', color: '#008B8B' }} onClick={() => navigator('/myPage')}>
+                                <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/mypage')}>
                                     마이페이지
                                 </Button>
                             ) : (
