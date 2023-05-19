@@ -48,7 +48,7 @@ export default function MainContents() {
   };
 
   const onMainOrderHandler = () => {
-
+    
   }
 
 
@@ -120,7 +120,8 @@ export default function MainContents() {
         >
           {selectedMenu && (
             <>
-              <Card>
+            <Box sx={{maxWidth: '240px'}}>
+            <Card>
                 <CardMedia component='img' height="150"
                   image={selectedMenu.menuImgUrl ? selectedMenu.menuImgUrl : ''}
                   alt={selectedMenu.menuName}
@@ -133,7 +134,7 @@ export default function MainContents() {
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-                  <Box component='button' sx={{ ml: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                  <Box component='button' sx={{ ml: '15px', mb: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                     <Typography variant="h6">{option.optionName}</Typography>
                     <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
                   </Box>
@@ -152,6 +153,7 @@ export default function MainContents() {
                   </Box>
                 </Box>
               </List>
+            </Box>
             </>
           )}
         </Drawer>
