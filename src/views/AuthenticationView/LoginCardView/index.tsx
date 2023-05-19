@@ -20,6 +20,8 @@ import ResponseDto from "src/apis/response";
 import { SIGN_IN_URL } from "src/apis/constants/api";
 import { useStore } from "zustand";
 import { useUserStore } from "src/stores";
+import { useCookies } from 'react-cookie';
+import { getExpires } from "src/utils";
 
 interface Props {
   setLoginView: Dispatch<SetStateAction<boolean>>;
@@ -35,6 +37,7 @@ export default function LoginCardView({ setLoginView }: Props) {
   const [userId, setUserId] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
+  const [cookies, setCookie] = useCookies();
   
   //          Event Handler          //
   const onUserIdKeyPressHandelr = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -69,6 +72,8 @@ export default function LoginCardView({ setLoginView }: Props) {
       }
 
       const { token, expiredTime, ...user } = data;
+      const expires = getExpires(expiredTime);
+        setCookie('accessToken', token, { expires, path: '/' });
       setUserId(userId);
       setUser(user);
       navigator("/");
