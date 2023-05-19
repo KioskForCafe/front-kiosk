@@ -10,7 +10,6 @@ import axios, { AxiosResponse } from 'axios';
 import { GET_CATEGORY_LIST_URL, GET_MENU_DETAIL_URL, GET_MENU_LIST_URL } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
-
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 
 export default function MainContents() {
@@ -20,9 +19,7 @@ export default function MainContents() {
 
   const [categoryList, setCategoryList] = useState<GetCategoryResponseDto[]>([]);
   const [menuList, setMenuList] = useState<GetMenuResponseDto[]>([]);
-
   const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto | null>(null);
-
 
 
   const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
@@ -43,7 +40,6 @@ export default function MainContents() {
   };
 
   const getMenuDetailHandler = (data: GetMenuResponseDto) => {
-    
     console.log('getMenuDetailHandler')
     axios.get(GET_MENU_DETAIL_URL(data.menuId))
       .then((response) => getMenuDetailResponseHandler(response))
@@ -74,7 +70,6 @@ export default function MainContents() {
       navigator('/');
       return;
     }
-
     setMenuList(data);
     console.log(data);
     console.log(menuList);
@@ -82,16 +77,13 @@ export default function MainContents() {
 
   const getMenuDetailResponseHandler = (response: AxiosResponse<any, any>) => {
     const { result, message, data } = response.data as ResponseDto<GetMenuDetailResponseDto>
-
     if (!result || !data) {
       alert(message);
       return;
     }
     setSelectedMenu(data);
-
     console.log('selected menu');
     console.log(data);
-
   }
 
   //          Error Handler          //
@@ -117,7 +109,7 @@ export default function MainContents() {
   return (
     <Box sx={{ p: '10px 17vw', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
       <Box mt='2px'>
-        {/* <Drawer
+        <Drawer
           anchor='right'
           open={Boolean(selectedMenu)}
           onClose={() => setSelectedMenu(null)}
@@ -137,14 +129,10 @@ export default function MainContents() {
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-                  // <ListItem key={option.optionId}>
-                  <Box component='button' sx={{ ml: '15px',  width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
-                    {/* <ListItemText primary={option.optionName} /> */}
+                  <Box component='button' sx={{ ml: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                     <Typography variant="h6">{option.optionName}</Typography>
-                    <Typography sx={{mt: '5px'}}>{option.optionPrice}원</Typography>
+                    <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
                   </Box>
-                  // </ListItem>
-
                 ))}
                 <Box sx={{ m: '20px 15px' }}>
                   <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
@@ -157,7 +145,7 @@ export default function MainContents() {
               </List>
             </>
           )}
-        </Drawer> */}
+        </Drawer>
         <List sx={{ m: '20px', p: '40px', display: 'flex', justifyContent: 'space-between' }}>
           {categoryList?.map((category) => (
             <ListItem
