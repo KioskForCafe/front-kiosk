@@ -129,13 +129,10 @@ export default function MainContents() {
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-                  <ListItem key={option.optionId}>
-                  <Box component='button' sx={{ ml: '15px',  width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
-                    <ListItemText primary={option.optionName} />
+                  <Box component='button' sx={{ ml: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                     <Typography variant="h6">{option.optionName}</Typography>
-                    <Typography sx={{mt: '5px'}}>{option.optionPrice}원</Typography>
+                    <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
                   </Box>
-                  // </ListItem>
                 ))}
                 <Box sx={{ m: '20px 15px' }}>
                   <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
