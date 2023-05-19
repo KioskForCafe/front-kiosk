@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { Box, Button, Grid, Typography } from '@mui/material'
 
-import { GetOrderResponse } from 'src/apis/response/order';
+import { GetOrderResponseDto } from 'src/apis/response/order';
 import { useCookies } from 'react-cookie';
 import axios, { AxiosResponse } from 'axios';
 import ResponseDto from 'src/apis/response';
@@ -15,7 +15,7 @@ export default function MyPageContents() {
     const [ cookies ] = useCookies();
     const navigator = useNavigate();
 
-    const [orderLogList, setOrderLogList] = useState<GetOrderResponse[]>([]);
+    const [orderLogList, setOrderLogList] = useState<GetOrderResponseDto[]>([]);
 
     //          Event Handler          //
     const getOrderLogListHandler = (accessToken: string) => {
@@ -26,7 +26,7 @@ export default function MyPageContents() {
 
     //          Response Handler          //
     const getOrderLogListResponseHandler = (response: AxiosResponse<any, any>) => {
-        const { result, message, data } = response.data as ResponseDto<GetOrderResponse[]>
+        const { result, message, data } = response.data as ResponseDto<GetOrderResponseDto[]>
 
         if (!result || !data) {
             alert(message)

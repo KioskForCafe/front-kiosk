@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
@@ -11,6 +11,7 @@ import { GET_CATEGORY_LIST_URL, GET_MENU_DETAIL_URL, GET_MENU_LIST_URL } from 's
 import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
+import { GetOrderResponseDto, PostOrderDetailResponseDto } from 'src/apis/response/order';
 
 export default function MainContents() {
 
@@ -22,7 +23,7 @@ export default function MainContents() {
   const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto | null>(null);
 
 
-  const { productList, viewList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
+  const { productList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
 
   //          Event Handler          //
 
@@ -46,6 +47,9 @@ export default function MainContents() {
       .catch((error) => getMenuDetailErrorHandler(error));
   };
 
+  const onMainOrderHandler = () => {
+    
+  }
 
 
   //          Response Handler          //
@@ -116,7 +120,8 @@ export default function MainContents() {
         >
           {selectedMenu && (
             <>
-              <Card>
+            <Box sx={{maxWidth: '240px'}}>
+            <Card>
                 <CardMedia component='img' height="150"
                   image={selectedMenu.menuImgUrl ? selectedMenu.menuImgUrl : ''}
                   alt={selectedMenu.menuName}
@@ -129,20 +134,26 @@ export default function MainContents() {
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-                  <Box component='button' sx={{ ml: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                  <Box component='button' sx={{ ml: '15px', mb: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
                     <Typography variant="h6">{option.optionName}</Typography>
                     <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
                   </Box>
                 ))}
                 <Box sx={{ m: '20px 15px' }}>
-                  <Box component='button' sx={{ width: '150px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
-                    <Typography>주문담기</Typography>
+                  <Box 
+                  component='button'
+                  onClick={() => onMainOrderHandler()}
+                  sx={{ p: '4px 4px', width: '130px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+                  주문담기
                   </Box>
-                  <Box component='button' sx={{ ml: '12px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => setSelectedMenu(null)}>
-                    <Typography>취소</Typography>
+                  <Box 
+                  component='button' 
+                  sx={{ p: '4px 4px', ml: '12px', width: '68px', backgroundColor: '#C0CA33', borderColor: '#FFFFFF', color: '#FFFFFF' }} onClick={() => setSelectedMenu(null)}>
+                  취소
                   </Box>
                 </Box>
               </List>
+            </Box>
             </>
           )}
         </Drawer>

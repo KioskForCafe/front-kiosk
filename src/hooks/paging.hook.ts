@@ -13,7 +13,7 @@ const usePagingHook = (COUNT: number) => {
     // }
 
     const [productList, setProductList] = useState<(GetMenuResponseDto | GetMenuDetailResponseDto)[]>([]);
-    const [viewList, setViewList] = useState<(GetMenuResponseDto | GetMenuDetailResponseDto)[] >([]);
+    const [menuList, setMenuList] = useState<(GetMenuResponseDto | GetMenuDetailResponseDto)[]>([]);
     const [pageNumber, setPageNumber] = useState<number>(1);
 
     const onPageHandler = (page: number) => {
@@ -28,7 +28,7 @@ const usePagingHook = (COUNT: number) => {
             if (productList.length < index + 1) break;
             tmpList.push(productList[index]); }
       
-            setViewList(tmpList);   
+            setMenuList(tmpList);   
         }
 
         useEffect(() => {
@@ -40,7 +40,7 @@ const usePagingHook = (COUNT: number) => {
         //     onPageHandler(1)
         // },[selectedCategory])
 
-        return {productList, viewList, pageNumber, setProductList, onPageHandler, COUNT};
+        return {productList, menuList, pageNumber, setProductList, onPageHandler, COUNT};
     }
 
 export default usePagingHook;
