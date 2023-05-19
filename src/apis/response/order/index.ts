@@ -1,4 +1,4 @@
-import PostOrderDetailResponse from './Post-Order-Detail.response.dto';
-import GetOrderResponse from './Get-Order.response.dto';
+import PostOrderDetailResponseDto from './Post-Order-Detail.response.dto';
+import GetOrderResponseDto from './Get-Order.response.dto';
 
-export type { PostOrderDetailResponse, GetOrderResponse };
+export type { PostOrderDetailResponseDto, GetOrderResponseDto };
