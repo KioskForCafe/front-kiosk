@@ -3,18 +3,23 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, Grid, Typography } from '@mui/material'
 
 import { GetOrderResponse } from 'src/apis/response/order';
+import { useCookies } from 'react-cookie';
 import axios, { AxiosResponse } from 'axios';
 import ResponseDto from 'src/apis/response';
-import { GET_ORDER_LIST_URL } from 'src/apis/constants/api';
+import { GET_ORDER_LIST_URL, authorizationHeader } from 'src/apis/constants/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyPageContents() {
 
     //          Hook          //
+    const [ cookies ] = useCookies();
+    const navigator = useNavigate();
+
     const [orderLogList, setOrderLogList] = useState<GetOrderResponse[]>([]);
 
     //          Event Handler          //
-    const getOrderLogListHandler = () => {
-        axios.get(GET_ORDER_LIST_URL(1))
+    const getOrderLogListHandler = (accessToken: string) => {
+        axios.get(GET_ORDER_LIST_URL(1), authorizationHeader(accessToken))
         .then((response) => getOrderLogListResponseHandler(response))
         .catch((error) => getOrderLogListErrorHandler(error))
     }
@@ -40,7 +45,12 @@ export default function MyPageContents() {
 
     //          Use Effect          //
     useEffect(() => {
-        getOrderLogListHandler();
+        const accessToken = cookies.accessToken;
+        //? 로그인이 되어있지 않으면 로그인 페이지로 이동
+        if (!accessToken) {
+            navigator('/auth');
+        }
+        getOrderLogListHandler(accessToken);
     }, [])
 
   return (
