@@ -67,7 +67,9 @@ export default function MainOrder() {
                                     <ClearIcon fontSize="inherit" />
                                 </IconButton>
                             </Box>
-                        </Box>)}
+                        </Box>
+                        )
+                    }
                 </Card>
                 <Card variant='outlined' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '30px', height: '240px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
                     <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
