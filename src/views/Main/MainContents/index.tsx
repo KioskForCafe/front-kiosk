@@ -13,6 +13,10 @@ import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 import { GetOrderResponseDto, PostOrderDetailResponseDto } from 'src/apis/response/order';
 
+import { useSelectedMenuStore } from 'src/stores';
+import { Option, SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+
+
 export default function MainContents() {
 
   //          Hook          //
@@ -21,11 +25,26 @@ export default function MainContents() {
   const [categoryList, setCategoryList] = useState<GetCategoryResponseDto[]>([]);
   const [menuList, setMenuList] = useState<GetMenuResponseDto[]>([]);
   const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto | null>(null);
+  const [optionList, setOptionList] = useState<Option[]>([]);
 
+  const { addSelectedMenuList } = useSelectedMenuStore();
 
   const { productList, pageNumber, setProductList, onPageHandler, COUNT } = usePagingHook(12);
 
   //          Event Handler          //
+
+  const optionClickHandler = (option: Option) => {
+    const existed = optionList.findIndex((item) => item.optionId === option.optionId);
+    if (existed !== undefined) {
+      const selectedOptionList = optionList.filter(item => item.optionId !== option.optionId);
+      setOptionList(selectedOptionList);
+    }
+    else {
+      const selectedOptionList = optionList.map(option => option);
+      selectedOptionList.push(option);
+      setOptionList(selectedOptionList);
+    }
+  }
 
   const getCategoryHandler = () => {
     axios.get(GET_CATEGORY_LIST_URL('1'))
@@ -49,6 +68,19 @@ export default function MainContents() {
 
   const onMainOrderHandler = () => {
     
+
+    if (!selectedMenu) return;
+
+    const menu: SelectedMenu = {
+      menuId: selectedMenu.menuId,
+      menuName: selectedMenu.menuName,
+      menuCount: 1,
+      menuPrice: selectedMenu.menuPrice,
+      optionList,
+    };
+    
+    addSelectedMenuList(menu);
+    // selectedMenu
   }
 
 
@@ -134,10 +166,17 @@ export default function MainContents() {
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-                  <Box component='button' sx={{ ml: '15px', mb: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}>
+
+                  <Box 
+                    component='button' 
+                    sx={{ ml: '15px', mb: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}
+                    onClick={() => optionClickHandler(option)}
+                  >
+
                     <Typography variant="h6">{option.optionName}</Typography>
                     <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
                   </Box>
+                
                 ))}
                 <Box sx={{ m: '20px 15px' }}>
                   <Box 
