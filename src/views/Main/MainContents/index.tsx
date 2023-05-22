@@ -12,8 +12,10 @@ import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 import { GetOrderResponseDto, PostOrderDetailResponseDto } from 'src/apis/response/order';
+
 import { useSelectedMenuStore } from 'src/stores';
 import { Option, SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+
 
 export default function MainContents() {
 
@@ -77,7 +79,6 @@ export default function MainContents() {
     };
     
     addSelectedMenuList(menu);
-    // selectedMenu
   }
 
   //          Response Handler          //
@@ -155,7 +156,7 @@ export default function MainContents() {
                   alt={selectedMenu.menuName}
                   sx={{ objectFit: "cover", width: "100%" }}>
                 </CardMedia>
-              </Card>
+            </Card>
               <Typography variant="h4" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
               <Typography variant="h5" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
               <Divider sx={{ mt: '10px' }} />
@@ -169,8 +170,7 @@ export default function MainContents() {
                   >
                     <Typography variant="h6">{option.optionName}</Typography>
                     <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
-                  </Box>
-                
+                  </Box>             
                 ))}
                 <Box sx={{ m: '20px 15px' }}>
                   <Box 
