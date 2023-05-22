@@ -4,41 +4,45 @@ import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutl
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useSelectedMenuStore } from 'src/stores';
+import { SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 
 export default function MainOrder() {
 
     const flag = false;
 
-    const incrementButton = document.getElementById("incrementButton");
-    const decrementButton = document.getElementById("decrementButton");
+    const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
     const numberDisplay = document.getElementById("itemNumber");
 
     let currentNumber: number = 0;
 
     const storedNumber = localStorage.getItem("currentNumber");
 
-    if (storedNumber !== null) {
-        currentNumber = parseInt(storedNumber);
+    const increaseButtonHandler = (selectedMenu: SelectedMenu) => {
+        const modifiedMenuList = selectedMenuList.map(menu =>{
+            if (menu.menuId === selectedMenu.menuId) {
+                const modifiedMenu: SelectedMenu = { ...menu, menuCount: menu.menuCount + 1 };
+                return modifiedMenu;
+            }
+            return menu;
+        });
+        setSelectedMenuList(modifiedMenuList);
     }
 
-    if (incrementButton && decrementButton && numberDisplay) {
-        numberDisplay.textContent = currentNumber.toString();
-
-        incrementButton.addEventListener("click", () => {
-            currentNumber++;
-            window.localStorage.setItem("currentNumber", currentNumber.toString());
-            numberDisplay.textContent = currentNumber.toString();
-        });
-
-        decrementButton.addEventListener("click", () => {
-            if (currentNumber > 0) {
-                currentNumber--;
-                window.localStorage.setItem("currentNumber", currentNumber.toString());
-                numberDisplay.textContent = currentNumber.toString();
+    const decreaseButtonHandler = (selectedMenu: SelectedMenu) => {
+        if (selectedMenu.menuCount === 1) return;
+        const modifiedMenuList = selectedMenuList.map(menu =>{
+            if (menu.menuId === selectedMenu.menuId) {
+                const modifiedMenu: SelectedMenu = { ...menu, menuCount: menu.menuCount - 1 };
+                return modifiedMenu;
             }
+            return menu;
         });
-    } else {
-        console.log("Element not found.");
+        setSelectedMenuList(modifiedMenuList);
+    }
+
+    if (storedNumber !== null) {
+        currentNumber = parseInt(storedNumber);
     }
 
 
@@ -49,24 +53,36 @@ export default function MainOrder() {
                     {flag ?
                         (<Typography sx={{ fontSize: '15px', fontWeight: 300 }}>메뉴를 추가해 주세요.</Typography>)
                         : (<Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-                            <Box sx={{ display: 'flex', height: '60px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
-                                <Box sx={{ flex: 1, ml: '10px' }}>에스프레소</Box>
-                                <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
-                                    <button id="decrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
-                                        <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
-                                    </button>
-                                    <Box sx={{ ml: '10px', mr: '10px' }}>
-                                        <div id="itemNumber">0</div>
+
+                            { selectedMenuList.map((menu) => (
+                                <Box sx={{ display: 'flex', height: '60px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
+                                    <Box sx={{ flex: 1, ml: '10px' }}>{menu.menuName}</Box>
+                                    <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
+                                        <button 
+                                            id="decrementButton" 
+                                            style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}
+                                            onClick={() => decreaseButtonHandler(menu)}
+                                        >
+                                            <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
+                                        </button>
+                                        <Box sx={{ ml: '10px', mr: '10px' }}>
+                                            <div id="itemNumber">{menu.menuCount}</div>
+                                        </Box>
+                                        <button 
+                                            id="incrementButton" 
+                                            style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}
+                                            onClick={() => increaseButtonHandler(menu)}
+                                        >
+                                            <AddRoundedIcon sx={{ fontSize: 'Large' }} />
+                                        </button>
                                     </Box>
-                                    <button id="incrementButton" style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}>
-                                        <AddRoundedIcon sx={{ fontSize: 'Large' }} />
-                                    </button>
+                                    <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>{menu.menuPrice * menu.menuCount}</Box>
+                                    <IconButton aria-label="delete" size="small" sx={{ mr: '20px' }} >
+                                        <ClearIcon fontSize="inherit" />
+                                    </IconButton>
                                 </Box>
-                                <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>7,000</Box>
-                                <IconButton aria-label="delete" size="small" sx={{ mr: '20px' }} >
-                                    <ClearIcon fontSize="inherit" />
-                                </IconButton>
-                            </Box>
+                            )) }
+
                         </Box>
                         )
                     }
