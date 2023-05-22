@@ -12,8 +12,10 @@ import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 import { GetOrderResponseDto, PostOrderDetailResponseDto } from 'src/apis/response/order';
+
 import { useSelectedMenuStore } from 'src/stores';
 import { Option, SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+
 
 export default function MainContents() {
 
@@ -66,6 +68,7 @@ export default function MainContents() {
 
   const onMainOrderHandler = () => {
     
+
     if (!selectedMenu) return;
 
     const menu: SelectedMenu = {
@@ -79,6 +82,7 @@ export default function MainContents() {
     addSelectedMenuList(menu);
     // selectedMenu
   }
+
 
   //          Response Handler          //
 
@@ -162,11 +166,13 @@ export default function MainContents() {
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
+
                   <Box 
                     component='button' 
                     sx={{ ml: '15px', mb: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}
                     onClick={() => optionClickHandler(option)}
                   >
+
                     <Typography variant="h6">{option.optionName}</Typography>
                     <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
                   </Box>
