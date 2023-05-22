@@ -68,7 +68,6 @@ export default function MainContents() {
 
   const onMainOrderHandler = () => {
     
-
     if (!selectedMenu) return;
 
     const menu: SelectedMenu = {
@@ -80,7 +79,6 @@ export default function MainContents() {
     };
     
     addSelectedMenuList(menu);
-    // selectedMenu
   }
 
 
@@ -159,24 +157,21 @@ export default function MainContents() {
                   alt={selectedMenu.menuName}
                   sx={{ objectFit: "cover", width: "100%" }}>
                 </CardMedia>
-              </Card>
+            </Card>
               <Typography variant="h4" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
               <Typography variant="h5" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
               <Divider sx={{ mt: '10px' }} />
               <List>
                 <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
-
                   <Box 
                     component='button' 
                     sx={{ ml: '15px', mb: '15px', width: '98px', height: '98px', backgroundColor: '#008B8B', borderColor: '#FFFFFF', color: '#FFFFFF' }}
                     onClick={() => optionClickHandler(option)}
                   >
-
                     <Typography variant="h6">{option.optionName}</Typography>
                     <Typography sx={{ mt: '5px' }}>{option.optionPrice}원</Typography>
-                  </Box>
-                
+                  </Box>             
                 ))}
                 <Box sx={{ m: '20px 15px' }}>
                   <Box 

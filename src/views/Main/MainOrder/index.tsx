@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Box, Button, Card, IconButton, Typography } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
@@ -5,18 +6,13 @@ import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useSelectedMenuStore } from 'src/stores';
-import { SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+import {  SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 
 export default function MainOrder() {
 
     const flag = false;
 
     const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
-    const numberDisplay = document.getElementById("itemNumber");
-
-    let currentNumber: number = 0;
-
-    const storedNumber = localStorage.getItem("currentNumber");
 
     const increaseButtonHandler = (selectedMenu: SelectedMenu) => {
         const modifiedMenuList = selectedMenuList.map(menu =>{
@@ -41,11 +37,6 @@ export default function MainOrder() {
         setSelectedMenuList(modifiedMenuList);
     }
 
-    if (storedNumber !== null) {
-        currentNumber = parseInt(storedNumber);
-    }
-
-
     return (
         <Box sx={{ p: '20px 80px', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
             <Box sx={{ display: 'flex' }}>
@@ -53,7 +44,6 @@ export default function MainOrder() {
                     {flag ?
                         (<Typography sx={{ fontSize: '15px', fontWeight: 300 }}>메뉴를 추가해 주세요.</Typography>)
                         : (<Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-
                             { selectedMenuList.map((menu) => (
                                 <Box sx={{ display: 'flex', height: '60px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
                                     <Box sx={{ flex: 1, ml: '10px' }}>{menu.menuName}</Box>
