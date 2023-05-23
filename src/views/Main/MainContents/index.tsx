@@ -26,6 +26,7 @@ export default function MainContents() {
   const [menuList, setMenuList] = useState<GetMenuResponseDto[]>([]);
   const [selectedMenu, setSelectedMenu] = useState<GetMenuDetailResponseDto | null>(null);
   const [optionList, setOptionList] = useState<Option[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const { addSelectedMenuList } = useSelectedMenuStore();
 
@@ -34,16 +35,28 @@ export default function MainContents() {
   //          Event Handler          //
 
   const optionClickHandler = (option: Option) => {
+    if (!selectedMenu) return;
+
+    let selectedOptionList = [];
+
     const existed = optionList.findIndex((item) => item.optionId === option.optionId);
-    if (existed !== undefined) {
-      const selectedOptionList = optionList.filter(item => item.optionId !== option.optionId);
+    if (existed !== -1) {
+      selectedOptionList = optionList.filter(item => item.optionId !== option.optionId);
       setOptionList(selectedOptionList);
     }
     else {
-      const selectedOptionList = optionList.map(option => option);
+      selectedOptionList = optionList.map(option => option);
       selectedOptionList.push(option);
       setOptionList(selectedOptionList);
     }
+
+    let total = 0;
+    selectedOptionList.forEach((option) => {total += option.optionPrice});
+    total += selectedMenu.menuPrice;
+
+    console.log(selectedOptionList);
+    console.log(total);
+    setTotalPrice(total);
   }
 
   const getCategoryHandler = () => {
@@ -74,7 +87,7 @@ export default function MainContents() {
       menuId: selectedMenu.menuId,
       menuName: selectedMenu.menuName,
       menuCount: 1,
-      menuPrice: selectedMenu.menuPrice,
+      menuPrice: totalPrice,
       optionList,
     };
     
@@ -115,6 +128,7 @@ export default function MainContents() {
       return;
     }
     setSelectedMenu(data);
+    setTotalPrice(data.menuPrice);
     console.log('selected menu');
     console.log(data);
   }
@@ -158,10 +172,10 @@ export default function MainContents() {
                 </CardMedia>
             </Card>
               <Typography variant="h4" sx={{ m: '10px 10px' }}>{selectedMenu.menuName}</Typography>
-              <Typography variant="h5" sx={{ ml: '10px' }}>{selectedMenu.menuPrice}원</Typography>
+              <Typography variant="h5" sx={{ ml: '10px' }}>{totalPrice}원</Typography>
               <Divider sx={{ mt: '10px' }} />
               <List>
-                <Typography display='block' sx={{ m: '15px 10px' }}>추가</Typography>
+                <Typography display='block' sx={{ m: '15px 14px', color: '#008B8B' }}>추가</Typography>
                 {selectedMenu.optionList.map((option) => (
                   <Box 
                     component='button' 

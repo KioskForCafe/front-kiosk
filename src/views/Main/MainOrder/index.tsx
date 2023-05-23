@@ -6,7 +6,7 @@ import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useSelectedMenuStore } from 'src/stores';
-import {  SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+import { SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 
 export default function MainOrder() {
 
@@ -14,8 +14,8 @@ export default function MainOrder() {
 
     const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
     const increaseButtonHandler = (selectedMenu: SelectedMenu) => {
-        const modifiedMenuList = selectedMenuList.map(menu =>{
-            if (menu.menuId === selectedMenu.menuId) {
+        const modifiedMenuList = selectedMenuList.map(menu => {
+            if (menu.menuId === selectedMenu.menuId && menu.menuPrice === selectedMenu.menuPrice) {
                 const modifiedMenu: SelectedMenu = { ...menu, menuCount: menu.menuCount + 1 };
                 return modifiedMenu;
             }
@@ -26,8 +26,8 @@ export default function MainOrder() {
 
     const decreaseButtonHandler = (selectedMenu: SelectedMenu) => {
         if (selectedMenu.menuCount === 1) return;
-        const modifiedMenuList = selectedMenuList.map(menu =>{
-            if (menu.menuId === selectedMenu.menuId) {
+        const modifiedMenuList = selectedMenuList.map(menu => {
+            if (menu.menuId === selectedMenu.menuId && menu.menuPrice === selectedMenu.menuPrice) {
                 const modifiedMenu: SelectedMenu = { ...menu, menuCount: menu.menuCount - 1 };
                 return modifiedMenu;
             }
@@ -43,12 +43,12 @@ export default function MainOrder() {
                     {flag ?
                         (<Typography sx={{ fontSize: '15px', fontWeight: 300 }}>메뉴를 추가해 주세요.</Typography>)
                         : (<Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-                            { selectedMenuList.map((menu) => (
+                            {selectedMenuList.map((menu) => (
                                 <Box sx={{ display: 'flex', height: '60px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
                                     <Box sx={{ flex: 1, ml: '10px' }}>{menu.menuName}</Box>
                                     <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
-                                        <button 
-                                            id="decrementButton" 
+                                        <button
+                                            id="decrementButton"
                                             style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}
                                             onClick={() => decreaseButtonHandler(menu)}
                                         >
@@ -57,8 +57,8 @@ export default function MainOrder() {
                                         <Box sx={{ ml: '10px', mr: '10px' }}>
                                             <div id="itemNumber">{menu.menuCount}</div>
                                         </Box>
-                                        <button 
-                                            id="incrementButton" 
+                                        <button
+                                            id="incrementButton"
                                             style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}
                                             onClick={() => increaseButtonHandler(menu)}
                                         >
@@ -70,7 +70,7 @@ export default function MainOrder() {
                                         <ClearIcon fontSize="inherit" />
                                     </IconButton>
                                 </Box>
-                            )) }
+                            ))}
 
                         </Box>
                         )
