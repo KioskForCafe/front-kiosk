@@ -11,6 +11,7 @@ import { useCookies } from 'react-cookie';
 import ResponseDto from './apis/response';
 import { GetUserResponseDto } from './apis/response/user';
 import { useEffect } from 'react';
+import UserInfomationModify from './views/UserInfomationModify';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route path='/' element={(<Main />)} />
         <Route path='/auth' element={(<AuthenticationView />)} />
         <Route path='/mypage' element={(<MyPageView />)}/>
+        <Route path='/patch/user' element={(<UserInfomationModify />)}  />
       </Routes>
     </>
   );
