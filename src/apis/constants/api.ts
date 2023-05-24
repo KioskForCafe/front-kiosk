@@ -5,12 +5,13 @@ export const authorizationHeader = (accessToken: string) => {
 const HOST = 'http://localhost:4040/';
 
 export const GET_USER_URL = `${HOST}api/user`;
+export const PATCH_USER_URL = `${HOST}api/user`
 
 export const SIGN_UP_URL = `${HOST}auth/sign-up`;
 export const SIGN_IN_URL = `${HOST}auth/sign-in`;
 
 export const DUPLICATE_ID_URL = `${HOST}api/user/duplicate/checkId`;
-export const DUPLICATE_TEL_NUMBER_URL = `${HOST}api/user/telNumber/duplicate`;
+export const DUPLICATE_TEL_NUMBER_URL = `${HOST}api/user/duplicate/checkTelNumber`;
 export const DUPLICATE_USEREMAIL_URL = `${HOST}api/user/duplicate/checkEmail`;
 
 export const POST_ORDER_URL = `${HOST}/api/order`;
