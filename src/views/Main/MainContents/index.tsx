@@ -92,6 +92,7 @@ export default function MainContents() {
     };
     
     addSelectedMenuList(menu);
+    setSelectedMenu(null);
   }
 
   //          Response Handler          //
