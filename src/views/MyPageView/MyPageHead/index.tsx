@@ -1,13 +1,54 @@
 import { Avatar, Box, Button, IconButton, Typography } from '@mui/material';
-import React from 'react'
+import axios, { AxiosResponse } from 'axios';
+import React, { useEffect } from 'react'
+import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom'
+import { DELETE_USER_URL, authorizationHeader } from 'src/apis/constants/api';
+import ResponseDto from 'src/apis/response';
+import { DeleteUserResponseDto, GetUserResponseDto } from 'src/apis/response/user';
 import { useUserStore } from 'src/stores';
 
 export default function MyPageHead() {
 
     const navigator = useNavigate();
+    const [cookies] = useCookies();
 
     const {user, resetUser, setUser} = useUserStore();
+
+    const accessToken = cookies.accessToken;
+
+    //          Event Handler          //
+    const userDeleteHandler = (data: GetUserResponseDto) => {
+      axios.delete(DELETE_USER_URL(data.userId), authorizationHeader(accessToken))
+      .then((response) => userDeleteResponseHandler(response))
+      .catch((error) => userDeleteErrorHandler(error))
+    }
+
+    //          Response Handler          //
+    const userDeleteResponseHandler = (response: AxiosResponse<any, any>) => {
+      const { result, message, data } = response.data as ResponseDto<DeleteUserResponseDto>;
+      if (!result || !data) {
+        alert(message);
+        return;
+      }
+
+      alert('회원 탈퇴가 완료되었습니다.');
+      resetUser();
+      navigator('/');
+    }
+
+    //          Error Handler          //
+    const userDeleteErrorHandler = (error: any) => {
+      console.log(error.message);
+    };
+
+    //          Use Effect          //
+    useEffect(() => {
+      if (!accessToken){
+        navigator('/auth');
+        return;
+      }
+    },[])
 
   return (
     <Box sx={{ p: '40px 120px', display: 'flex' }}>
@@ -26,7 +67,7 @@ export default function MyPageHead() {
           <Button variant='text' onClick={() => navigator('/patch/user')}>회원 정보 수정</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: '40px 120px' }}>
-          <Button variant='text' >회원 탈퇴</Button>
+          <Button variant='text' onClick={() => {userDeleteHandler}} >회원 탈퇴</Button>
         </Box>
     </Box>
   )
