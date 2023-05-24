@@ -115,6 +115,7 @@ export default function UserInfomationModify() {
     axios.patch(PATCH_USER_URL, data, authorizationHeader(accessToken))
       .then((response) => patchUserResponseHandler(response))
       .catch((error) => patchUserErrorHandler(error));
+      
   }
 
   //          Response Handler          //
