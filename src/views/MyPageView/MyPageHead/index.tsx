@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom'
 import { DELETE_USER_URL, authorizationHeader } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
+import { SignInResponseDto } from 'src/apis/response/auth';
 import { DeleteUserResponseDto, GetUserResponseDto } from 'src/apis/response/user';
 import { useUserStore } from 'src/stores';
 
@@ -18,7 +19,7 @@ export default function MyPageHead() {
     const accessToken = cookies.accessToken;
 
     //          Event Handler          //
-    const userDeleteHandler = (data: GetUserResponseDto) => {
+    const userDeleteHandler = (data: SignInResponseDto) => {
       axios.delete(DELETE_USER_URL(data.userId), authorizationHeader(accessToken))
       .then((response) => userDeleteResponseHandler(response))
       .catch((error) => userDeleteErrorHandler(error))
@@ -67,7 +68,7 @@ export default function MyPageHead() {
           <Button variant='text' onClick={() => navigator('/patch/user')}>회원 정보 수정</Button>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: '40px 120px' }}>
-          <Button variant='text' onClick={() => {userDeleteHandler}} >회원 탈퇴</Button>
+          <Button variant='text' >회원 탈퇴</Button>
         </Box>
     </Box>
   )
