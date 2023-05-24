@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Box, Button, Card, IconButton, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Box, Button, Card, IconButton, List, ListItem, ListItemText, ListSubheader, Typography } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
@@ -10,9 +10,8 @@ import {  SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 
 export default function MainOrder() {
 
-    const flag = false;
-
     const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
+    const [total, setTotal] = useState<number>(0);
     const increaseButtonHandler = (selectedMenu: SelectedMenu) => {
         const modifiedMenuList = selectedMenuList.map(menu => {
             if (menu.menuId === selectedMenu.menuId && menu.menuPrice === selectedMenu.menuPrice) {
@@ -36,13 +35,28 @@ export default function MainOrder() {
         setSelectedMenuList(modifiedMenuList);
     }
 
+    useEffect(() => {
+        let total = 0;
+        selectedMenuList.forEach((menu) => {
+            total += menu.menuCount * menu.menuPrice;
+        })
+        setTotal(total);
+    }, [selectedMenuList]);
+
     return (
         <Box sx={{ p: '20px 80px', backgroundColor: 'rgba(0, 0, 0, 0)' }}>
             <Box sx={{ display: 'flex' }}>
                 <Card variant='outlined' sx={{ display: 'flex', flex: 2, width: '150px', height: '240px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-                    {flag ?
-                        (<Typography sx={{ fontSize: '15px', fontWeight: 300 }}>메뉴를 추가해 주세요.</Typography>)
-                        : (<Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+                    <List
+                        sx={{
+                            width: '100%',
+                            maxWidth: 1700,
+                            bgcolor: 'background.paper',
+                            position: 'relative',
+                            overflow: 'auto',
+                        }}          
+                    >
+                        <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
                             {selectedMenuList.map((menu) => (
                                 <Box sx={{ display: 'flex', height: '60px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
                                     <Box sx={{ flex: 1, ml: '10px' }}>{menu.menuName}</Box>
@@ -71,22 +85,22 @@ export default function MainOrder() {
                                     </IconButton>
                                 </Box>
                             ))}
-
                         </Box>
-                        )
-                    }
+
+                    </List>
+
                 </Card>
-                <Card variant='outlined' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '30px', height: '240px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+                {/* <Card variant='outlined' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '30px', height: '240px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
                     <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
                         <KeyboardArrowUpOutlinedIcon sx={{ color: '#008B8B' }} />
                     </Button>
                     <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
                         <KeyboardArrowDownOutlinedIcon sx={{ color: '#008B8B' }} />
                     </Button>
-                </Card>
+                </Card> */}
                 <Box sx={{ height: '360px', ml: '30px' }}>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
-                    <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>$ 00,000원</Typography>
+                    <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>{total}원</Typography>
                     <Box sx={{ m: '40px 0px' }}>
                         <Button variant='contained' sx={{ mt: '30px', width: '150px', height: '90px', backgroundColor: '#008B8B' }}>
                             <Typography sx={{ fontSize: '20px', fontWeight: 300 }}>결제</Typography>
