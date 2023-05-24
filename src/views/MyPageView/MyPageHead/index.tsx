@@ -25,6 +25,9 @@ export default function MyPageHead() {
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: '40px 120px' }}>
           <Button variant='text' onClick={() => navigator('/patch/user')}>회원 정보 수정</Button>
         </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: '40px 120px' }}>
+          <Button variant='text' >회원 탈퇴</Button>
+        </Box>
     </Box>
   )
 }
