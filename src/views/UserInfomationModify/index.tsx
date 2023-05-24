@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import { Box, Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, Typography } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check';
 import axios, { AxiosResponse } from 'axios';
-import { useSignUpStore } from 'src/stores';
+import { useSignUpStore, useUserStore } from 'src/stores';
 import { DUPLICATE_ID_URL, DUPLICATE_TEL_NUMBER_URL, DUPLICATE_USEREMAIL_URL, GET_USER_URL, PATCH_USER_URL, authorizationHeader } from 'src/apis/constants/api';
 import { DuplicateEmailRequestDto, DuplicateIdRequestDto, DuplicateTelNumberDto, PatchUserRequestDto } from 'src/apis/request/user';
 import ResponseDto from 'src/apis/response';
@@ -18,6 +18,8 @@ export default function UserInfomationModify() {
   const navigator = useNavigate();
 
      //          Hook          //
+  const userStore = useUserStore();
+
   const [cookies] = useCookies();
   const { userId, password, passwordCheck } = useSignUpStore();
   const { setUserId, setPassword, setPasswordCheck } = useSignUpStore();
@@ -31,13 +33,9 @@ export default function UserInfomationModify() {
   const { telNumberPatternCheck, telNumberDuplicate, userEmailPatternCheck, userEmailDuplicate } = useSignUpStore();
   const { setTelNumberPatternCheck, setTelNumberDuplicate, setUserEmailPatternCheck, setUserEmailDuplicate } = useSignUpStore();
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showPasswordCheck, setShowPasswordCheck] = useState<boolean>(false);
-
   const accessToken = cookies.accessToken;
 
   const userIdDuplicator = /^[A-Za-z0-9]{1,30}$/;
-  const passwordDuplicator = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!?_]).{8,20}$/;
   const telNumberDuplicator = /^[0-9]{3}-[0-9]{3,4}-[0-9]{3,4}$/;
   const userEmailDuplicator = /^[A-Za-z0-9]*@[A-Za-z0-9]([-.]?[A-Za-z0-9])*\.[A-Za-z0-9]{2,3}$/;
 
@@ -56,20 +54,6 @@ export default function UserInfomationModify() {
     axios.post(DUPLICATE_ID_URL, data)
       .then((response) => duplicateCheckIdResponseHandler(response))
       .catch((error) => duplicateIdErrorHandler(error));
-  }
-
-  const onPasswordChangeHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const value = event.target.value;
-    const isMatched = passwordDuplicator.test(value);
-    setPasswordPatternCheck(isMatched);
-    setPassword(value);
-  }
-
-  const onPasswordCheckChangeHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const value = event.target.value;
-    const isMatched = password === value;
-    setPasswordDuplicate(isMatched);
-    setPasswordCheck(value);
   }
 
   const onUserNameHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -110,7 +94,7 @@ export default function UserInfomationModify() {
   }
 
   const onPatchUserHandler = () => {
-    if ( !userId || !telNumber || !userEmail) {
+    if ( !userId || !userName || !telNumber || !userEmail) {
       alert('모든 내용을 입력해주세요.');
       return;
     }
@@ -131,39 +115,17 @@ export default function UserInfomationModify() {
     axios.patch(PATCH_USER_URL, data, authorizationHeader(accessToken))
       .then((response) => patchUserResponseHandler(response))
       .catch((error) => patchUserErrorHandler(error));
-
-  }
-
-  const getUser = () => {
-    axios.get(GET_USER_URL)
-    .then((response) => getUserResponseHandler(response))
-    .catch((error) => getUserErrorHandler(error));
   }
 
   //          Response Handler          //
-  const getUserResponseHandler = (response: AxiosResponse<any, any>) => {
-    const {result, message, data} = response.data as ResponseDto<GetUserResponseDto>;
-    if (!result || !data) {
-      alert(message);
-      navigator('/');
-      return;
-    }
-
-    const { userId, userName, telNumber, userEmail } = data;
-
-    setUserId(userId);
-    setUserName(userName);
-    setTelNumber(telNumber);
-    setUserEmail(userEmail);
-
-  }
-
   const patchUserResponseHandler = (response: AxiosResponse<any, any>) => {
     const { result, message, data } = response.data as ResponseDto<PatchUserResponseDto>;
     if (!result || !data) {
       alert(message);
       return;
     }
+
+    userStore.setUser(data);
     navigator('/mypage');
   }
 
@@ -196,10 +158,6 @@ export default function UserInfomationModify() {
   }
 
   //          Error Handler          //
-  const getUserErrorHandler = (error: any) => {
-    console.log(error.response.status);
-  }
-
   const patchUserErrorHandler = (error: any) => {
     console.log(error.response.status);
   }
@@ -222,7 +180,6 @@ export default function UserInfomationModify() {
       navigator('/auth');
       return;
     }
-    getUser();
   },[])
 
   return (

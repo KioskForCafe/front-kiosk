@@ -6,7 +6,7 @@ import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useSelectedMenuStore } from 'src/stores';
-import { SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+import {  SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 
 export default function MainOrder() {
 
