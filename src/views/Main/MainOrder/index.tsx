@@ -5,11 +5,17 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useSelectedMenuStore } from 'src/stores';
 import { SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
+import { PostOrderResponseDto } from 'src/apis/response/order';
+import axios, { AxiosResponse } from 'axios';
+import { POST_ORDER_URL } from 'src/apis/constants/api';
+import ResponseDto from 'src/apis/response';
 
 export default function MainOrder() {
 
     const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
     const [total, setTotal] = useState<number>(0);
+    const [paymentOrder, setPaymentOrder] = useState<PostOrderResponseDto>();
+
     const increaseButtonHandler = (selectedMenu: SelectedMenu) => {
         const modifiedMenuList = selectedMenuList.map(menu => {
             if (menu.menuId === selectedMenu.menuId && menu.menuPrice === selectedMenu.menuPrice) {
@@ -37,6 +43,26 @@ export default function MainOrder() {
         const deleteMenuList = selectedMenuList.filter(menu => JSON.stringify(menu) !== JSON.stringify(selectedMenu));
         setSelectedMenuList(deleteMenuList);
     }
+
+    const paymentCompletedHandler = (data: PostOrderResponseDto) => {
+        axios.post(POST_ORDER_URL, data)
+            .then((response) => postOrderResponseHandler(response))
+            .catch((error) => postOrderErrorHandler(error));
+    }
+
+    const postOrderResponseHandler = (response: AxiosResponse<any, any>) => {
+        const { result, message, data } = response.data as ResponseDto<PostOrderResponseDto>;
+        if (!result || !data) {
+            alert(message);
+            return;
+        }
+        setPaymentOrder(data);
+    }
+
+    const postOrderErrorHandler = (error: any) => {
+        console.log(error.message);
+    }
+
 
     useEffect(() => {
         let total = 0;
@@ -96,7 +122,7 @@ export default function MainOrder() {
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>{total}원</Typography>
                     <Box sx={{ m: '40px 0px' }}>
                         <Button variant='contained' sx={{ mt: '30px', width: '150px', height: '90px', backgroundColor: '#008B8B' }}>
-                            <Typography sx={{ fontSize: '20px', fontWeight: 300 }}>결제</Typography>
+                            <Typography sx={{ fontSize: '20px', fontWeight: 300 }} onClick={() => paymentCompletedHandler()}>결제</Typography>
                         </Button>
                     </Box>
                 </Box>
