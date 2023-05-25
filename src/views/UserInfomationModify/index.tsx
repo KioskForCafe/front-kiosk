@@ -1,15 +1,13 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import { Box, Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, Typography } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check';
 import axios, { AxiosResponse } from 'axios';
 import { useSignUpStore, useUserStore } from 'src/stores';
-import { DUPLICATE_ID_URL, DUPLICATE_TEL_NUMBER_URL, DUPLICATE_USEREMAIL_URL, GET_USER_URL, PATCH_USER_URL, authorizationHeader } from 'src/apis/constants/api';
+import { DUPLICATE_ID_URL, DUPLICATE_TEL_NUMBER_URL, DUPLICATE_USEREMAIL_URL, PATCH_USER_URL, authorizationHeader } from 'src/apis/constants/api';
 import { DuplicateEmailRequestDto, DuplicateIdRequestDto, DuplicateTelNumberDto, PatchUserRequestDto } from 'src/apis/request/user';
 import ResponseDto from 'src/apis/response';
 import { DuplicateCheckEmailResponseDto, DuplicateCheckIdResponseDto, DuplicateTelnumberResponseDto, GetUserResponseDto, PatchUserResponseDto } from 'src/apis/response/user';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { SignUpRequestDto } from 'src/apis/request/auth';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 

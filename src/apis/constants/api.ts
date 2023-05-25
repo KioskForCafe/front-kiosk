@@ -16,6 +16,8 @@ export const DUPLICATE_USEREMAIL_URL = `${HOST}api/user/duplicate/checkEmail`;
 
 export const POST_ORDER_URL = `${HOST}/api/order`;
 
+export const GET_STORE_URL = `${HOST}/api/store`;
+
 export const DELETE_USER_URL = (userId: string) => `${HOST}api/user/${userId}`;
 // export const DELETE_ORDER_URL = (orderDetailId: string) => `${HOST}api/order/detail/${orderDetailId}`;
 

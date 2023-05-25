@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 
 import { GetOrderResponseDto } from 'src/apis/response/order';
 import { useCookies } from 'react-cookie';
