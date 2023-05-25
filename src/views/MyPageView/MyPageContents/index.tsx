@@ -19,7 +19,7 @@ export default function MyPageContents() {
 
     //          Event Handler          //
     const getOrderLogListHandler = (accessToken: string) => {
-        axios.get(GET_ORDER_LIST_URL(1,'Waiting'), authorizationHeader(accessToken))
+        axios.get(GET_ORDER_LIST_URL(1), authorizationHeader(accessToken))
         .then((response) => getOrderLogListResponseHandler(response))
         .catch((error) => getOrderLogListErrorHandler(error))
     }
