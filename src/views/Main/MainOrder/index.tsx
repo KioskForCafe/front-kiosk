@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Box, Button, Card, IconButton, List, ListItem, ListItemText, ListSubheader, Typography } from '@mui/material';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -35,6 +33,11 @@ export default function MainOrder() {
         setSelectedMenuList(modifiedMenuList);
     }
 
+    const deleteMenuHandler = (selectedMenu: SelectedMenu) => {
+        const deleteMenuList = selectedMenuList.filter(menu => JSON.stringify(menu) !== JSON.stringify(selectedMenu));
+        setSelectedMenuList(deleteMenuList);
+    }
+
     useEffect(() => {
         let total = 0;
         selectedMenuList.forEach((menu) => {
@@ -54,7 +57,7 @@ export default function MainOrder() {
                             bgcolor: 'background.paper',
                             position: 'relative',
                             overflow: 'auto',
-                        }}          
+                        }}
                     >
                         <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
                             {selectedMenuList.map((menu) => (
@@ -81,23 +84,13 @@ export default function MainOrder() {
                                     </Box>
                                     <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>{menu.menuPrice * menu.menuCount}</Box>
                                     <IconButton aria-label="delete" size="small" sx={{ mr: '20px' }} >
-                                        <ClearIcon fontSize="inherit" />
+                                        <ClearIcon fontSize="inherit" onClick={() => deleteMenuHandler(menu)} />
                                     </IconButton>
                                 </Box>
                             ))}
                         </Box>
-
                     </List>
-
                 </Card>
-                {/* <Card variant='outlined' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '30px', height: '240px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-                    <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
-                        <KeyboardArrowUpOutlinedIcon sx={{ color: '#008B8B' }} />
-                    </Button>
-                    <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
-                        <KeyboardArrowDownOutlinedIcon sx={{ color: '#008B8B' }} />
-                    </Button>
-                </Card> */}
                 <Box sx={{ height: '360px', ml: '30px' }}>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>{total}원</Typography>
@@ -108,9 +101,7 @@ export default function MainOrder() {
                     </Box>
                 </Box>
             </Box>
-
         </Box>
-
     )
 }
 
