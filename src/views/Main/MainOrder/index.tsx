@@ -88,14 +88,6 @@ export default function MainOrder() {
                     </List>
 
                 </Card>
-                {/* <Card variant='outlined' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '30px', height: '240px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-                    <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
-                        <KeyboardArrowUpOutlinedIcon sx={{ color: '#008B8B' }} />
-                    </Button>
-                    <Button sx={{ flex: 1, height: '10px', width: '15px' }}>
-                        <KeyboardArrowDownOutlinedIcon sx={{ color: '#008B8B' }} />
-                    </Button>
-                </Card> */}
                 <Box sx={{ height: '360px', ml: '30px' }}>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>{total}원</Typography>
