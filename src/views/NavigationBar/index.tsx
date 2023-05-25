@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import HomeIcon from '@mui/icons-material/Home';
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserStore } from 'src/stores';
+import { useCookies } from 'react-cookie';
+import axios, { AxiosResponse } from 'axios';
+import { GET_STORE_URL } from 'src/apis/constants/api';
+import ResponseDto from 'src/apis/response';
+import { GetStoreResponseDto } from 'src/apis/response/store';
 export default function NavigationBar() {
 
     const navigator = useNavigate();
     const path = useLocation();
 
-    const { user } = useUserStore();
+    const { user, resetUser, setUser } = useUserStore();
+    const [ cookies, setCookies ] = useCookies();
+
+    const [storeName, setStoreName] = useState<string>('');
+
+    //          Event Handler            //
+    const onLogoutHandler = () => {
+        setCookies('accessToken', '', { expires: new Date(), path: '/' });
+        resetUser();
+        navigator('/');
+    }
+
+    useEffect(() => {
+        axios.get(GET_STORE_URL)
+        .then((response) => getStoreResponseHandler(response))
+        .catch((error) => getStoreErrorHandler(error))
+    }, [])
+
+    const getStoreResponseHandler = (response: AxiosResponse<any, any>) => {
+        const { result, message, data } = response.data as ResponseDto<GetStoreResponseDto>;
+        if (!result || !data) {
+            alert(message);
+            return;
+        }
+
+        setStoreName(data.storeName);
+    }
+
+    const getStoreErrorHandler = (error: any) => {
+        console.log(error.message);
+    }
 
 
     return (
@@ -22,16 +57,18 @@ export default function NavigationBar() {
                             <HomeIcon sx={{ fontSize: '30px', color: '#008B8B' }} onClick={() => navigator('/')} />
                         </Button>
                         <Typography variant="h6" sx={{ color: '#000000' }}>
-                            Logo / 매장명
+                            {storeName}
                         </Typography>
-                        {/* <Button variant='contained' sx={{ backgroundColor: '#008B8B' }}>
-                            로그인
-                        </Button> */}
                         {path.pathname !== '/auth' && (user ?
                             (
-                                <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/mypage')}>
+                                <Box>
+                                    <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/mypage')}>
                                     마이페이지
-                                </Button>
+                                    </Button>
+                                    <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={onLogoutHandler}>
+                                    로그아웃
+                                    </Button>
+                                </Box>                            
                             ) : (
                                 <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/auth')}>
                                     로그인
