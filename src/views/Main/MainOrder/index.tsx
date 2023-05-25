@@ -3,7 +3,7 @@ import { Box, Button, Card, IconButton, List, ListItem, ListItemText, ListSubhea
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useSelectedMenuStore } from 'src/stores';
+import { useSelectedMenuStore, useStoresStore } from 'src/stores';
 import { SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 import { PostOrderResponseDto } from 'src/apis/response/order';
 import axios, { AxiosResponse } from 'axios';
@@ -13,6 +13,7 @@ import { PostOrderRequestDto } from 'src/apis/request/order';
 
 export default function MainOrder() {
 
+    const {store} = useStoresStore();
     const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
     const [total, setTotal] = useState<number>(0);
     const [paymentOrder, setPaymentOrder] = useState<PostOrderResponseDto>();
@@ -46,12 +47,13 @@ export default function MainOrder() {
     }
 
     const paymentCompletedHandler = () => {
+        if(!store) return;
 
-        const data: PostOrderRequestDto = { storeId:1, totalPrice:total, orderState:'Waiting', orderDetailList:selectedMenuList.map((selectedMenu)=>{
+        const data: PostOrderRequestDto = { storeId:Number(store.storeId), totalPrice:total, orderState:'Waiting', orderDetailList:selectedMenuList.map((selectedMenu)=>{
             return { storeId:1, menuCount:selectedMenu.menuCount, menuId:selectedMenu.menuId, optionList:selectedMenu.optionList.map((option)=>{
                 return option.optionId;
             })}
-        }) }
+        })}
 
         axios.post(POST_ORDER_URL, data)
         .then((response) => postOrderResponseHandler(response))

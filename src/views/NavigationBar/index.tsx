@@ -15,6 +15,7 @@ export default function NavigationBar() {
     const navigator = useNavigate();
     const path = useLocation();
 
+    const {store} = useStoresStore();
     const { user, resetUser, setUser } = useUserStore();
     const [cookies, setCookies] = useCookies();
     const {userId} = useParams();
@@ -24,6 +25,12 @@ export default function NavigationBar() {
     const accessToken = cookies.accessToken;
 
     //          Event Handler            //
+
+    const onHomeButtonHandler = () => {
+        if(!store) return;
+        navigator(`/${store.storeId}`)
+    }
+
     const onLogoutHandler = () => {
         setCookies('accessToken', '', { expires: new Date(), path: '/' });
         resetUser();
@@ -39,10 +46,10 @@ export default function NavigationBar() {
                 <Box>
                     <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Button>
-                            <HomeIcon sx={{ fontSize: '30px', color: '#008B8B' }} onClick={() => navigator('/')} />
+                            <HomeIcon sx={{ fontSize: '30px', color: '#008B8B' }} onClick={() => onHomeButtonHandler()} />
                         </Button>
                         <Typography variant="h6" sx={{ color: '#000000' }}>
-                            {storeName}
+                            {store ? store.storeName : '없는 매장입니다.'}
                         </Typography>
                         {path.pathname !== '/auth' && (user ?
                             (

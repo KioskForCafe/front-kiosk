@@ -12,7 +12,7 @@ import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
 
-import { useSelectedMenuStore } from 'src/stores';
+import { useSelectedMenuStore, useStoresStore } from 'src/stores';
 import { Option, SelectedMenu } from 'src/interfaces/SelectedMenu.interface';
 
 
@@ -20,6 +20,7 @@ export default function MainContents() {
 
   //          Hook          //
   const navigator = useNavigate();
+  const {store} = useStoresStore();
 
   const [categoryList, setCategoryList] = useState<GetCategoryResponseDto[]>([]);
   const [menuList, setMenuList] = useState<GetMenuResponseDto[]>([]);
@@ -59,14 +60,16 @@ export default function MainContents() {
   }
 
   const getCategoryHandler = () => {
-    axios.get(GET_CATEGORY_LIST_URL('1'))
+    if(!store) return;
+    axios.get(GET_CATEGORY_LIST_URL(store?.storeId))
       .then((response) => getCategoryResponseHandler(response))
       .catch((error) => getCategoryErrorHandler(error));
   }
 
   const getMenuListHandler = (data: GetCategoryResponseDto) => {
     console.log('handleCategoryClick');
-    axios.get(GET_MENU_LIST_URL('1', data.categoryId))
+    if(!store) return;
+    axios.get(GET_MENU_LIST_URL(store?.storeId, data.categoryId))
       .then((response) => getMenuReseponseHandler(response))
       .catch((error) => getMenuErrorHandler(error));
   };

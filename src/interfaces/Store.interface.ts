@@ -1,5 +1,5 @@
 interface Store {
-    storeId: string;
+    storeId: number;
     storeName: string;
     storeLogoUrl: string | null; 
 }
