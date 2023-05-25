@@ -33,6 +33,12 @@ export default function MainOrder() {
         setSelectedMenuList(modifiedMenuList);
     }
 
+
+    const deleteMenuHandler = (selectedMenu: SelectedMenu) => {
+        const deleteMenuList = selectedMenuList.filter(menu => JSON.stringify(menu) !== JSON.stringify(selectedMenu));
+        setSelectedMenuList(deleteMenuList);
+    }
+
     useEffect(() => {
         let total = 0;
         selectedMenuList.forEach((menu) => {
@@ -52,7 +58,7 @@ export default function MainOrder() {
                             bgcolor: 'background.paper',
                             position: 'relative',
                             overflow: 'auto',
-                        }}          
+                        }}
                     >
                         <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
                             {selectedMenuList.map((menu) => (
@@ -79,14 +85,12 @@ export default function MainOrder() {
                                     </Box>
                                     <Box sx={{ ml: '20px', mr: '20px', pr: '20px', width: '10px' }}>{menu.menuPrice * menu.menuCount}</Box>
                                     <IconButton aria-label="delete" size="small" sx={{ mr: '20px' }} >
-                                        <ClearIcon fontSize="inherit" />
+                                        <ClearIcon fontSize="inherit" onClick={() => deleteMenuHandler(menu)} />
                                     </IconButton>
                                 </Box>
                             ))}
                         </Box>
-
                     </List>
-
                 </Card>
                 <Box sx={{ height: '360px', ml: '30px' }}>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
@@ -98,9 +102,7 @@ export default function MainOrder() {
                     </Box>
                 </Box>
             </Box>
-
         </Box>
-
     )
 }
 
