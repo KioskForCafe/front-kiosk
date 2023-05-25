@@ -33,6 +33,7 @@ export default function MainOrder() {
         setSelectedMenuList(modifiedMenuList);
     }
 
+
     const deleteMenuHandler = (selectedMenu: SelectedMenu) => {
         const deleteMenuList = selectedMenuList.filter(menu => JSON.stringify(menu) !== JSON.stringify(selectedMenu));
         setSelectedMenuList(deleteMenuList);
@@ -57,7 +58,6 @@ export default function MainOrder() {
                             bgcolor: 'background.paper',
                             position: 'relative',
                             overflow: 'auto',
-                        }}
                     >
                         <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
                             {selectedMenuList.map((menu) => (
@@ -91,6 +91,7 @@ export default function MainOrder() {
                         </Box>
                     </List>
                 </Card>
+
                 <Box sx={{ height: '360px', ml: '30px' }}>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>총 결제</Typography>
                     <Typography variant='h6' sx={{ fontSize: '25px', color: '#008B8B' }}>{total}원</Typography>
