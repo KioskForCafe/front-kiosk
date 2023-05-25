@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 
 import { GetOrderResponseDto } from 'src/apis/response/order';
 import { useCookies } from 'react-cookie';
@@ -19,7 +19,7 @@ export default function MyPageContents() {
 
     //          Event Handler          //
     const getOrderLogListHandler = (accessToken: string) => {
-        axios.get(GET_ORDER_LIST_URL(1), authorizationHeader(accessToken))
+        axios.get(GET_ORDER_LIST_URL(1,'Waiting'), authorizationHeader(accessToken))
         .then((response) => getOrderLogListResponseHandler(response))
         .catch((error) => getOrderLogListErrorHandler(error))
     }

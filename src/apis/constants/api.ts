@@ -14,7 +14,9 @@ export const DUPLICATE_ID_URL = `${HOST}api/user/duplicate/checkId`;
 export const DUPLICATE_TEL_NUMBER_URL = `${HOST}api/user/duplicate/checkTelNumber`;
 export const DUPLICATE_USEREMAIL_URL = `${HOST}api/user/duplicate/checkEmail`;
 
-export const POST_ORDER_URL = `${HOST}/api/order`;
+export const POST_ORDER_URL = `${HOST}api/order`;
+
+export const GET_STORE_URL = `${HOST}api/store`;
 
 export const DELETE_USER_URL = (userId: string) => `${HOST}api/user/${userId}`;
 // export const DELETE_ORDER_URL = (orderDetailId: string) => `${HOST}api/order/detail/${orderDetailId}`;
@@ -24,4 +26,4 @@ export const GET_CATEGORY_LIST_URL = (storeId: string) => `${HOST}api/category/l
 export const GET_MENU_LIST_URL = (storeId: string, categoryId: number) => `${HOST}api/menu/list/${storeId}/${categoryId}`;
 export const GET_MENU_DETAIL_URL = (menuId: number) => `${HOST}api/menu/${menuId}`;
 
-export const GET_ORDER_LIST_URL = (storeId: number) => `${HOST}api/order/list/${storeId}`;
+export const GET_ORDER_LIST_URL = (storeId: number,orderState: string) => `${HOST}api/order/list/${storeId}/${orderState}`;

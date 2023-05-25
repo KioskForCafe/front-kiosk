@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, IconButton, Typography } from '@mui/material';
 import axios, { AxiosResponse } from 'axios';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom'
 import { DELETE_USER_URL, authorizationHeader } from 'src/apis/constants/api';

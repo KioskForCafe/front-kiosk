@@ -18,7 +18,6 @@ import { SignInRequestDto } from "src/apis/request/auth";
 import { SignInResponseDto } from "src/apis/response/auth";
 import ResponseDto from "src/apis/response";
 import { SIGN_IN_URL } from "src/apis/constants/api";
-import { useStore } from "zustand";
 import { useUserStore } from "src/stores";
 import { useCookies } from 'react-cookie';
 import { getExpires } from "src/utils";

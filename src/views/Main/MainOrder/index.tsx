@@ -9,6 +9,7 @@ import { PostOrderResponseDto } from 'src/apis/response/order';
 import axios, { AxiosResponse } from 'axios';
 import { POST_ORDER_URL } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
+import { PostOrderRequestDto } from 'src/apis/request/order';
 
 export default function MainOrder() {
 
@@ -44,18 +45,26 @@ export default function MainOrder() {
         setSelectedMenuList(deleteMenuList);
     }
 
-    const paymentCompletedHandler = (data: PostOrderResponseDto) => {
-        axios.post(POST_ORDER_URL, data)
-            .then((response) => postOrderResponseHandler(response))
-            .catch((error) => postOrderErrorHandler(error));
-    }
+    const paymentCompletedHandler = () => {
 
+        const data: PostOrderRequestDto = { storeId:1, totalPrice:total, orderState:'Waiting', orderDetailList:selectedMenuList.map((selectedMenu)=>{
+            return { storeId:1, menuCount:selectedMenu.menuCount, menuId:selectedMenu.menuId, optionList:selectedMenu.optionList.map((option)=>{
+                return option.optionId;
+            })}
+        }) }
+
+        axios.post(POST_ORDER_URL, data)
+        .then((response) => postOrderResponseHandler(response))
+        .catch((error) => postOrderErrorHandler(error));
+    }
+    
     const postOrderResponseHandler = (response: AxiosResponse<any, any>) => {
         const { result, message, data } = response.data as ResponseDto<PostOrderResponseDto>;
         if (!result || !data) {
             alert(message);
             return;
         }
+        console.log(data);
         setPaymentOrder(data);
     }
 

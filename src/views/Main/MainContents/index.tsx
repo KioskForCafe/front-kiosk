@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
@@ -11,7 +11,6 @@ import { GET_CATEGORY_LIST_URL, GET_MENU_DETAIL_URL, GET_MENU_LIST_URL } from 's
 import ResponseDto from 'src/apis/response';
 import { GetCategoryResponseDto } from 'src/apis/response/category';
 import { GetMenuDetailResponseDto, GetMenuResponseDto } from 'src/apis/response/menu';
-import { GetOrderResponseDto, PostOrderDetailResponseDto } from 'src/apis/response/order';
 
 import { useSelectedMenuStore } from 'src/stores';
 import { Option, SelectedMenu } from 'src/interfaces/SelectedMenu.interface';

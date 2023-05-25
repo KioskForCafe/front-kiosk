@@ -1,4 +1,5 @@
 import User from './User.interface';
+import Store from './Store.interface';
 export interface IMenuOption {
     id: number;
     name1: string;
@@ -38,7 +39,7 @@ export interface IUser {
 }
 
 
-export type { User };
+export type { User, Store };
 
 
 
