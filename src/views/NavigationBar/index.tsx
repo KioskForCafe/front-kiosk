@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import HomeIcon from '@mui/icons-material/Home';
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useUserStore } from 'src/stores';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useStoresStore, useUserStore } from 'src/stores';
 import { useCookies } from 'react-cookie';
 import axios, { AxiosResponse } from 'axios';
-import { GET_STORE_URL } from 'src/apis/constants/api';
+import { GET_STORE_URL, authorizationHeader } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
 import { GetStoreResponseDto } from 'src/apis/response/store';
 export default function NavigationBar() {
@@ -16,9 +16,12 @@ export default function NavigationBar() {
     const path = useLocation();
 
     const { user, resetUser, setUser } = useUserStore();
-    const [ cookies, setCookies ] = useCookies();
+    const [cookies, setCookies] = useCookies();
+    const {userId} = useParams();
 
-    const [storeName, setStoreName] = useState<string>('');
+    const [storeName , setStoreName] = useState<string>('스타벅스');
+
+    const accessToken = cookies.accessToken;
 
     //          Event Handler            //
     const onLogoutHandler = () => {
@@ -28,25 +31,7 @@ export default function NavigationBar() {
     }
 
     useEffect(() => {
-        axios.get(GET_STORE_URL)
-        .then((response) => getStoreResponseHandler(response))
-        .catch((error) => getStoreErrorHandler(error))
-    }, [])
-
-    const getStoreResponseHandler = (response: AxiosResponse<any, any>) => {
-        const { result, message, data } = response.data as ResponseDto<GetStoreResponseDto>;
-        if (!result || !data) {
-            alert(message);
-            return;
-        }
-
-        setStoreName(data.storeName);
-    }
-
-    const getStoreErrorHandler = (error: any) => {
-        console.log(error.message);
-    }
-
+    })
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -63,12 +48,12 @@ export default function NavigationBar() {
                             (
                                 <Box>
                                     <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/mypage')}>
-                                    마이페이지
+                                        마이페이지
                                     </Button>
-                                    <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={onLogoutHandler}>
-                                    로그아웃
+                                    <Button variant='contained' sx={{ ml: '10px', backgroundColor: '#008B8B' }} onClick={onLogoutHandler}>
+                                        로그아웃
                                     </Button>
-                                </Box>                            
+                                </Box>
                             ) : (
                                 <Button variant='contained' sx={{ backgroundColor: '#008B8B' }} onClick={() => navigator('/auth')}>
                                     로그인

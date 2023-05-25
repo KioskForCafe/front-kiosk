@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom'
 import { DELETE_USER_URL, authorizationHeader } from 'src/apis/constants/api';
 import ResponseDto from 'src/apis/response';
+import { SignInResponseDto } from 'src/apis/response/auth';
 import { DeleteUserResponseDto, GetUserResponseDto } from 'src/apis/response/user';
 import { useUserStore } from 'src/stores';
 
