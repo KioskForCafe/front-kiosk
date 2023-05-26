@@ -10,7 +10,7 @@ import { GET_STORE_URL, GET_USER_URL, authorizationHeader } from './apis/constan
 import { useCookies } from 'react-cookie';
 import ResponseDto from './apis/response';
 import { GetUserResponseDto } from './apis/response/user';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import UserInfomationModify from './views/UserInfomationModify';
 import { GetStoreResponseDto } from './apis/response/store';
 
@@ -20,7 +20,8 @@ function App() {
   const pathSegments = path.pathname.split('/');
   const storeId = Number(pathSegments[1]);
 
-  const {setStore} = useStoresStore();
+
+  const {store , setStore} = useStoresStore();
   const { setUser } = useUserStore();
   const [ cookies ] = useCookies();
 
@@ -37,12 +38,13 @@ function App() {
     .catch((error) => getUserErrorHandler(error));
   }
 
-  const getStoreResponseHandler = (response: AxiosResponse<any, any>)=> {
+  const getStoreResponseHandler = async (response: AxiosResponse<any, any>)=> {
     const {data,message,result} = response.data as ResponseDto<GetStoreResponseDto>
     if(!result || !data){
-      return;
+      return; 
     }
     setStore(data);
+
   }
 
   const getUserResponseHandler = (response: AxiosResponse<any, any>) => {
@@ -65,16 +67,14 @@ function App() {
   useEffect(() => {
     const accessToken = cookies.accessToken;
     if (accessToken) getUser(accessToken);
-    getStore()
+    getStore();
   }, [path]);
-  
-
 
   return (
     <>
       <NavigationBar />
       <Routes>
-        <Route path={`/${storeId}`} element={(<Main />)} />
+        {!store ? null : <Route path={`/${storeId}`} element={(<Main />)} />}
         <Route path='/auth' element={(<AuthenticationView />)} />
         <Route path='/mypage' element={(<MyPageView />)}/>
         <Route path='/patch/user' element={(<UserInfomationModify />)}  />
