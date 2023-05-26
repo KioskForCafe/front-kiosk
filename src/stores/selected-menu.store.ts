@@ -8,7 +8,7 @@ interface ISelectedMenuStroe {
     setSelectedMenu: (selectedMenu: SelectedMenu) => void;
     setSelectedMenuList: (selectedMenu: SelectedMenu[]) => void;
     addSelectedMenuList: (selectedMenu: SelectedMenu) => void;
-    resetUser: () => void;
+    resetselectedMenuList: () => void;
 }
 
 const useStore = create<ISelectedMenuStroe>((set) => ({
@@ -21,6 +21,6 @@ const useStore = create<ISelectedMenuStroe>((set) => ({
         addedSelectedMenu.push(selectedMenu);
         return ({...state, selectedMenuList: addedSelectedMenu })
     }),
-    resetUser: () => set((state) => ({...state, user: null})),
+    resetselectedMenuList: () => set((state) => ({...state, selectedMenuList: []})),
 }))
 export default useStore;

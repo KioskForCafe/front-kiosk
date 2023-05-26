@@ -14,13 +14,13 @@ import { PostOrderRequestDto } from 'src/apis/request/order';
 export default function MainOrder() {
 
     const {store} = useStoresStore();
-    const { selectedMenuList, setSelectedMenuList } = useSelectedMenuStore();
+    const { selectedMenuList, setSelectedMenuList, resetselectedMenuList } = useSelectedMenuStore();
     const [total, setTotal] = useState<number>(0);
     const [paymentOrder, setPaymentOrder] = useState<PostOrderResponseDto>();
 
-    const increaseButtonHandler = (selectedMenu: SelectedMenu) => {
-        const modifiedMenuList = selectedMenuList.map(menu => {
-            if (menu.menuId === selectedMenu.menuId && menu.menuPrice === selectedMenu.menuPrice) {
+    const increaseButtonHandler = (selectedMenu: SelectedMenu, idx: number) => {
+        const modifiedMenuList = selectedMenuList.map((menu,index) => {
+            if (idx === index) {
                 const modifiedMenu: SelectedMenu = { ...menu, menuCount: menu.menuCount + 1 };
                 return modifiedMenu;
             }
@@ -29,10 +29,10 @@ export default function MainOrder() {
         setSelectedMenuList(modifiedMenuList);
     }
 
-    const decreaseButtonHandler = (selectedMenu: SelectedMenu) => {
+    const decreaseButtonHandler = (selectedMenu: SelectedMenu, idx: number) => {
         if (selectedMenu.menuCount === 1) return;
-        const modifiedMenuList = selectedMenuList.map(menu => {
-            if (menu.menuId === selectedMenu.menuId && menu.menuPrice === selectedMenu.menuPrice) {
+        const modifiedMenuList = selectedMenuList.map((menu,index) => {
+            if (idx === index) {
                 const modifiedMenu: SelectedMenu = { ...menu, menuCount: menu.menuCount - 1 };
                 return modifiedMenu;
             }
@@ -66,8 +66,9 @@ export default function MainOrder() {
             alert(message);
             return;
         }
-        console.log(data);
         setPaymentOrder(data);
+        resetselectedMenuList();
+        alert('주문 성공');
     }
 
     const postOrderErrorHandler = (error: any) => {
@@ -97,14 +98,14 @@ export default function MainOrder() {
                         }}
                     >
                         <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-                            {selectedMenuList.map((menu) => (
+                            {selectedMenuList.map((menu,idx) => (
                                 <Box sx={{ display: 'flex', height: '60px', backgroundColor: '#F0F8FF', alignItems: 'center' }}>
                                     <Box sx={{ flex: 1, ml: '10px' }}>{menu.menuName}</Box>
                                     <Box sx={{ display: 'flex', width: '100px', mr: '10px', alignItems: 'center' }}>
                                         <button
                                             id="decrementButton"
                                             style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}
-                                            onClick={() => decreaseButtonHandler(menu)}
+                                            onClick={() => decreaseButtonHandler(menu,idx)}
                                         >
                                             <RemoveRoundedIcon sx={{ fontSize: 'large' }} />
                                         </button>
@@ -114,7 +115,7 @@ export default function MainOrder() {
                                         <button
                                             id="incrementButton"
                                             style={{ color: '#FFFFFF', backgroundColor: '#008B8B', borderColor: '#FFFFFF' }}
-                                            onClick={() => increaseButtonHandler(menu)}
+                                            onClick={() => increaseButtonHandler(menu,idx)}
                                         >
                                             <AddRoundedIcon sx={{ fontSize: 'Large' }} />
                                         </button>
